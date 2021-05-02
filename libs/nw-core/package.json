@@ -1,0 +1,26 @@
+{
+  "name": "nw-core",
+  "version": "1.0.0",
+  "description": "Network Graph Core Library",
+  "license": "MIT",
+  "scripts": {
+    "build": "node_modules/.bin/my-build",
+    "my-bulk-command": "node_modules/.bin/my-bulk-command"
+  },
+  "dependencies": {
+    "d3": "^6.7.0",
+    "d3-force": "^2.1.1",
+    "d3-selection": "^2.0.0",
+    "lodash": "^4.17.21",
+    "tslib": "^2.1.0"
+  },
+  "devDependencies": {
+    "jest": "~26.6.3",
+    "@types/jest": "~26.0.22",
+    "@types/d3": "^6.3.0",
+    "@types/d3-force": "^2.1.1",
+    "@types/node": "^12.11.1",
+    "dvjay-toolchain": "^1.0.0",
+    "typescript": "^3.0.3"
+  }
+}

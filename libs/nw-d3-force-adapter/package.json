@@ -1,0 +1,25 @@
+{
+  "name": "nw-d3-force-adapter",
+  "version": "1.0.0",
+  "description": "Network Graph D3-Force Adapter",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "node_modules/.bin/my-build",
+    "my-bulk-command": "node_modules/.bin/my-bulk-command"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0",
+    "d3-force": "^2.1.1",
+    "nw-core": "1.0.0"
+  },
+  "devDependencies": {
+    "jest": "~26.6.3",
+    "@types/jest": "~26.0.22",
+    "@types/d3-force": "^2.1.1",
+    "@types/node": "^12.11.1",
+    "dvjay-toolchain": "^1.0.0",
+    "typescript": "^3.0.3"
+  }
+}
