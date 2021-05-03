@@ -389,6 +389,18 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
+    {
+      "packageName": "nw-components-angular",
+      "projectFolder": "libs/nw-components-angular",
+      "reviewCategory": "production"
+    },
+    {
+      "packageName": "nw-toolchain",
+      "projectFolder": "tools/nw-toolchain",
+      "reviewCategory": "tools"
+    }
+  ]
+  //"projects": [
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)
@@ -457,5 +469,5 @@
     //   "projectFolder": "tools/nw-toolchain",
     //   "reviewCategory": "tools"
     // }
-  ]
+  //]
 }

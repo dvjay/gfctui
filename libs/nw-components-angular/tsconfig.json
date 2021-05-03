@@ -6,7 +6,6 @@
     "target": "es2015",
     "declaration": true,
     "declarationMap": true,
-    "inlineSources": true,
     "types": [],
     "lib": [
       "dom",
