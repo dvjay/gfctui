@@ -1,18 +1,51 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "extends": "./node_modules/nw-toolchain/includes/tsconfig-web.json",
+  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "../../out-tsc/lib",
-    "target": "es2015",
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationMap": true,
-    "types": [],
+    "sourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "downlevelIteration": true,
+    "types": [
+      "node"
+    ],
+    "moduleResolution": "node",
+    "module": "es2020",
+    "target": "es2017",
     "lib": [
-      "dom",
-      "es2018"
-    ]
+      "es2018",
+      "scripthost",
+      "dom"
+    ],
+    "paths": {
+      "nw-components-angular": [
+        "dist/nw-components-angular/nw-components-angular",
+        "dist/nw-components-angular"
+      ]
+    },
+    "importHelpers": true
   },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableResourceInlining": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
-    "**/*.spec.ts"
+    "./node_modules",
+    "./dist"
   ]
 }
