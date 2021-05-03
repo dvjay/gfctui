@@ -1,5 +1,5 @@
 // This script provides the implementation for the example custom command "my-bulk-command"
-// that is defined in common/config/rush/command-line.json and launched via my-toolchain/bin/my-bulk-command.js
+// that is defined in common/config/rush/command-line.json and launched via nw-toolchain/bin/my-bulk-command.js
 
 console.log('Invoking ' + __filename);
 

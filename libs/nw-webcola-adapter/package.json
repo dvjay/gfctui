@@ -28,7 +28,7 @@
     "@types/d3-force": "^2.1.1",
     "@types/d3-selection": "^2.0.0",
     "@types/node": "^12.11.1",
-    "dvjay-toolchain": "^1.0.0",
+    "nw-toolchain": "^1.0.0",
     "typescript": "^4.2.4"
   }
 }

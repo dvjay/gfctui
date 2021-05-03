@@ -3,7 +3,7 @@
 import * as colors from 'colors';
 import * as child_process from 'child_process';
 
-console.log('Invoking my-toolchain...');
+console.log('Invoking nw-toolchain...');
 
 child_process.execSync('tsc', { stdio: 'inherit' });
 

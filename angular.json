@@ -16,10 +16,10 @@
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/nw-components-angular/tsconfig.lib.prod.json"
+              "tsConfig": "libs/nw-components-angular/tsconfig.json"
             },
             "development": {
-              "tsConfig": "libs/nw-components-angular/tsconfig.lib.json"
+              "tsConfig": "libs/nw-components-angular/tsconfig.json"
             }
           },
           "defaultConfiguration": "production"
