@@ -1,7 +1,6 @@
 /*
- * Public API Surface of nw-components-angular
+ * Public API Surface of some-lib
  */
+export * from '@gfct/nw-components-angular/src/lib/feature-c';
 
-export * from './lib/nw-components-angular.service';
-export * from './lib/nw-components-angular.component';
-export * from './lib/nw-components-angular.module';
+// notice that the internal utils are NOT exported from top level public-api.ts file

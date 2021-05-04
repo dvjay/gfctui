@@ -15,6 +15,10 @@ Run `ng build nw-components-angular` to build the project. The build artifacts w
 
 After building your library with `ng build nw-components-angular`, go to the dist folder `cd dist/nw-components-angular` and run `npm publish`.
 
+## Running unit tests
+
+Run `ng test nw-components-angular` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

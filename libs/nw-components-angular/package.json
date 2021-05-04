@@ -1,58 +1,11 @@
 {
-  "name": "nw-components-angular",
+  "name": "@gfct/nw-components-angular",
   "version": "1.0.0",
   "peerDependencies": {
-    "@angular/animations": "^12.0.0-rc.1",
     "@angular/common": "^12.0.0-rc.1",
-    "@angular/compiler": "^12.0.0-rc.1",
-    "@angular/core": "^12.0.0-rc.1",
-    "@angular/forms": "^12.0.0-rc.1",
-    "@angular/platform-browser": "^12.0.0-rc.1",
-    "@angular/platform-browser-dynamic": "^12.0.0-rc.1",
-    "rxjs": "^6.6.7",
-    "zone.js": "^0.11.4"
+    "@angular/core": "^12.0.0-rc.1"
   },
   "dependencies": {
-    "@angular/cdk": "^11.2.10",
-    "@angular/material": "^11.2.10",
-    "@ngrx/effects": "^11.1.1",
-    "@ngrx/entity": "^11.1.1",
-    "@ngrx/store": "^11.1.1",
-    "@ngrx/store-devtools": "^11.1.1",
-    "lodash": "^4.17.21",
-    "tslib": "^2.2.0"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^12.0.0-rc.1",
-    "@angular/cli": "^12.0.0-rc.1",
-    "@angular/compiler-cli": "^12.0.0-rc.1",
-    "@babel/core": "^7.14.0",
-    "@compodoc/compodoc": "^1.1.11",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/angular": "^6.2.9",
-    "@tailwindcss/aspect-ratio": "latest",
-    "@tailwindcss/forms": "latest",
-    "@tailwindcss/line-clamp": "latest",
-    "@tailwindcss/typography": "latest",
-    "@types/jest": "~26.0.22",
-    "@types/lodash": "^4.14.168",
-    "@types/node": "^12.11.1",
-    "babel-loader": "^8.2.2",
-    "cross-env": "^7.0.3",
-    "jest": "~26.6.3",
-    "jest-preset-angular": "~8.4.0",
-    "ng-packagr": "^12.0.0-next.8",
-    "ngx-tailwind": "^2.1.0",
-    "nw-toolchain": "^1.0.0",
-    "tailwindcss": "^2.0.3",
-    "ts-node": "~9.1.1",
-    "typescript": "^4.2.4"
-  },
-  "scripts": {
-    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-    "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook"
+    "tslib": "^2.1.0"
   }
 }
