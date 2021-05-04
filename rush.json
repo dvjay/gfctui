@@ -395,6 +395,11 @@
       "reviewCategory": "internal"
     },
     {
+      "packageName": "@gfct/nw-components-angular",
+      "projectFolder": "libs/nw-components-angular",
+      "reviewCategory": "production"
+    },
+    {
       "packageName": "nw-toolchain",
       "projectFolder": "tools/nw-toolchain",
       "reviewCategory": "tools"

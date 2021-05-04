@@ -1,16 +1,15 @@
 dependencies:
   '@angular-devkit/build-angular': 12.0.0-rc.1_0a47de537a1d787d4b0848ee638b4a95
-  '@angular/animations': 12.0.0-rc.1_@angular+core@12.0.0-rc.1
+  '@angular/animations': 12.0.0-rc.1
   '@angular/cli': 12.0.0-rc.1
-  '@angular/common': 12.0.0-rc.1_1422aade127a6eb742bbace2381356b1
   '@angular/compiler': 12.0.0-rc.1
   '@angular/compiler-cli': 12.0.0-rc.1_@angular+compiler@12.0.0-rc.1
-  '@angular/core': 12.0.0-rc.1_rxjs@6.6.7+zone.js@0.11.4
-  '@angular/forms': 12.0.0-rc.1_1aa9a7583c75a87c266c73cad3050ecd
-  '@angular/platform-browser': 12.0.0-rc.1_1a4c397acf6e483b0f6189b32305e65b
-  '@angular/platform-browser-dynamic': 12.0.0-rc.1_f7318336c0431d58a385631d34112eda
-  '@angular/router': 12.0.0-rc.1_1aa9a7583c75a87c266c73cad3050ecd
+  '@angular/forms': 12.0.0-rc.1_69a00c17f982ae386189960cc1164875
+  '@angular/platform-browser': 12.0.0-rc.1_@angular+animations@12.0.0-rc.1
+  '@angular/platform-browser-dynamic': 12.0.0-rc.1_d9e712e040102d31e100f03e0dcd4ee5
+  '@angular/router': 12.0.0-rc.1_69a00c17f982ae386189960cc1164875
   '@rush-temp/gfctui': file:projects/gfctui.tgz
+  '@rush-temp/nw-components-angular': file:projects/nw-components-angular.tgz_rxjs@6.6.7+zone.js@0.11.4
   '@rush-temp/nw-toolchain': file:projects/nw-toolchain.tgz
   colors: 1.4.0
   ng-packagr: 12.0.0-rc.0_d23f49810585b3537ddf5be2c2252224
@@ -327,6 +326,16 @@ packages:
       yarn: '>= 1.13.0'
     resolution:
       integrity: sha512-phE8jNUeOiX1Co+4sLCHi1rMoOrqEmIRKOI4Saorn2d2S7b21k9lf4Z/GFwQ7djsfoxKkMP8zhd/M4hkVMxeNw==
+  /@angular/animations/12.0.0-rc.1:
+    dependencies:
+      tslib: 2.2.0
+    dev: false
+    engines:
+      node: ^12.14.1 || ^14.0.0
+    peerDependencies:
+      '@angular/core': 12.0.0-rc.1
+    resolution:
+      integrity: sha512-RZ3dHwTXR2skgVQfg08IsYdrnXlIwoWHWxeAli2vAt/T3TCYX6tyGagvg7UQ/ypbmpt5ckelicmMvCHJdephZg==
   /@angular/animations/12.0.0-rc.1_@angular+core@12.0.0-rc.1:
     dependencies:
       '@angular/core': 12.0.0-rc.1_rxjs@6.6.7+zone.js@0.11.4
@@ -473,6 +482,36 @@ packages:
       rxjs: ^6.5.3
     resolution:
       integrity: sha512-82giQLMgzB35zuBcFY6sUCf+qAgocpHC60auKjZ/PPwwnl0SD3RFh/sVl01HfdpR7dZ8WyeZJ8Cy7ERyTe6+Kw==
+  /@angular/forms/12.0.0-rc.1_69a00c17f982ae386189960cc1164875:
+    dependencies:
+      '@angular/platform-browser': 12.0.0-rc.1_@angular+animations@12.0.0-rc.1
+      rxjs: 6.6.7
+      tslib: 2.2.0
+    dev: false
+    engines:
+      node: ^12.14.1 || ^14.0.0
+    peerDependencies:
+      '@angular/common': 12.0.0-rc.1
+      '@angular/core': 12.0.0-rc.1
+      '@angular/platform-browser': 12.0.0-rc.1
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha512-82giQLMgzB35zuBcFY6sUCf+qAgocpHC60auKjZ/PPwwnl0SD3RFh/sVl01HfdpR7dZ8WyeZJ8Cy7ERyTe6+Kw==
+  /@angular/platform-browser-dynamic/12.0.0-rc.1_d9e712e040102d31e100f03e0dcd4ee5:
+    dependencies:
+      '@angular/compiler': 12.0.0-rc.1
+      '@angular/platform-browser': 12.0.0-rc.1_@angular+animations@12.0.0-rc.1
+      tslib: 2.2.0
+    dev: false
+    engines:
+      node: ^12.14.1 || ^14.0.0
+    peerDependencies:
+      '@angular/common': 12.0.0-rc.1
+      '@angular/compiler': 12.0.0-rc.1
+      '@angular/core': 12.0.0-rc.1
+      '@angular/platform-browser': 12.0.0-rc.1
+    resolution:
+      integrity: sha512-MeIZa2b2zZeCY+R6/lpd68RU7mnmKN4qBQSLYJ96TWo5ERpPQM3veyQVROOC6i+hd6kWfItlDirNuuYzFFCs9Q==
   /@angular/platform-browser-dynamic/12.0.0-rc.1_f7318336c0431d58a385631d34112eda:
     dependencies:
       '@angular/common': 12.0.0-rc.1_1422aade127a6eb742bbace2381356b1
@@ -508,11 +547,42 @@ packages:
         optional: true
     resolution:
       integrity: sha512-Tm/p6rqnYkFxwOtuJTMg37lgSuxxNOjm6VPpw+hnzwYvsxVX/Kfl3JdUFsSd2riPdxv+K2GzHkg4qk/P2hvR1Q==
+  /@angular/platform-browser/12.0.0-rc.1_@angular+animations@12.0.0-rc.1:
+    dependencies:
+      '@angular/animations': 12.0.0-rc.1
+      tslib: 2.2.0
+    dev: false
+    engines:
+      node: ^12.14.1 || ^14.0.0
+    peerDependencies:
+      '@angular/animations': 12.0.0-rc.1
+      '@angular/common': 12.0.0-rc.1
+      '@angular/core': 12.0.0-rc.1
+    peerDependenciesMeta:
+      '@angular/animations':
+        optional: true
+    resolution:
+      integrity: sha512-Tm/p6rqnYkFxwOtuJTMg37lgSuxxNOjm6VPpw+hnzwYvsxVX/Kfl3JdUFsSd2riPdxv+K2GzHkg4qk/P2hvR1Q==
   /@angular/router/12.0.0-rc.1_1aa9a7583c75a87c266c73cad3050ecd:
     dependencies:
       '@angular/common': 12.0.0-rc.1_1422aade127a6eb742bbace2381356b1
       '@angular/core': 12.0.0-rc.1_rxjs@6.6.7+zone.js@0.11.4
       '@angular/platform-browser': 12.0.0-rc.1_1a4c397acf6e483b0f6189b32305e65b
+      rxjs: 6.6.7
+      tslib: 2.2.0
+    dev: false
+    engines:
+      node: ^12.14.1 || ^14.0.0
+    peerDependencies:
+      '@angular/common': 12.0.0-rc.1
+      '@angular/core': 12.0.0-rc.1
+      '@angular/platform-browser': 12.0.0-rc.1
+      rxjs: ^6.5.3
+    resolution:
+      integrity: sha512-UNgejXYN3SRt6BxSxpQ5mNFUcf7hOAoTEuiCL6Ad8XW1AV9jMex+2ta9YFuPSaoL1pQUsDBiNEOKcHilftEXlA==
+  /@angular/router/12.0.0-rc.1_69a00c17f982ae386189960cc1164875:
+    dependencies:
+      '@angular/platform-browser': 12.0.0-rc.1_@angular+animations@12.0.0-rc.1
       rxjs: 6.6.7
       tslib: 2.2.0
     dev: false
@@ -8879,6 +8949,21 @@ packages:
       integrity: sha512-ECPRNaLk9ZdsWqgVwyJXzJbr+kve27Tz3L1VBzG1C6yItXVOKV2nqHSTHw8ZPOhSA86yUzmJeY4YLV6zmyTkeQ==
       tarball: file:projects/gfctui.tgz
     version: 0.0.0
+  file:projects/nw-components-angular.tgz_rxjs@6.6.7+zone.js@0.11.4:
+    dependencies:
+      '@angular/common': 12.0.0-rc.1_1422aade127a6eb742bbace2381356b1
+      '@angular/core': 12.0.0-rc.1_rxjs@6.6.7+zone.js@0.11.4
+      tslib: 2.2.0
+    dev: false
+    id: file:projects/nw-components-angular.tgz
+    name: '@rush-temp/nw-components-angular'
+    peerDependencies:
+      rxjs: '*'
+      zone.js: '*'
+    resolution:
+      integrity: sha512-rfZgENRnY7EXWmCLpejQF7jJZDaitkPPCT8i8NPuyiuEXpgpy6tRUIVWj/lFUkT+VVaJgYxCT+gbIIl3LRcvDA==
+      tarball: file:projects/nw-components-angular.tgz
+    version: 0.0.0
   file:projects/nw-toolchain.tgz:
     dependencies:
       '@types/node': 10.17.59
@@ -8896,15 +8981,14 @@ specifiers:
   '@angular-devkit/build-angular': ~12.0.0-rc.1
   '@angular/animations': ~12.0.0-rc.1
   '@angular/cli': ~12.0.0-rc.1
-  '@angular/common': ~12.0.0-rc.1
   '@angular/compiler': ~12.0.0-rc.1
   '@angular/compiler-cli': ~12.0.0-rc.1
-  '@angular/core': ~12.0.0-rc.1
   '@angular/forms': ~12.0.0-rc.1
   '@angular/platform-browser': ~12.0.0-rc.1
   '@angular/platform-browser-dynamic': ~12.0.0-rc.1
   '@angular/router': ~12.0.0-rc.1
   '@rush-temp/gfctui': file:./projects/gfctui.tgz
+  '@rush-temp/nw-components-angular': file:./projects/nw-components-angular.tgz
   '@rush-temp/nw-toolchain': file:./projects/nw-toolchain.tgz
   colors: ^1.3.2
   ng-packagr: ^12.0.0-next.8
