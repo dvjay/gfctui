@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CComponent } from './c/c.component';
+import { ContainerComponent } from './components/container.component';
 
 @NgModule({
-  declarations: [CComponent],
+  declarations: [ContainerComponent],
   imports: [CommonModule],
-  exports: [CComponent],
+  exports: [ContainerComponent],
 })
-export class FeatureCModule {}
+export class NwGraphModule {}
