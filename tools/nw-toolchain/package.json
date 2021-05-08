@@ -1,5 +1,5 @@
 {
-  "name": "nw-toolchain",
+  "name": "@gfct/nw-toolchain",
   "version": "1.0.0",
   "description": "An example toolchain used to build projects in this repo",
   "license": "MIT",

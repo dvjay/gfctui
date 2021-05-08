@@ -400,7 +400,12 @@
       "reviewCategory": "production"
     },
     {
-      "packageName": "nw-toolchain",
+      "packageName": "@gfct/nw-core",
+      "projectFolder": "libs/nw-core",
+      "reviewCategory": "internal"
+    },
+    {
+      "packageName": "@gfct/nw-toolchain",
       "projectFolder": "tools/nw-toolchain",
       "reviewCategory": "tools"
     }

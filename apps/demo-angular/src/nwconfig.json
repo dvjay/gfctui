@@ -1,0 +1,27 @@
+{
+    "maxSelectedNodes": 5,
+    "displayLabel": true,
+    "autoExpand": false,
+    "viewportheight": 700,
+    "node": {
+      "rawkey": "printSet",
+      "attributes": [
+        { "id": "nodeId", "displayname": "Node ID", "rawpath": "v_id", "required": true, "tooltip": false },
+        { "id": "nodeType", "displayname": "Node Type", "rawpath": "v_type", "required": true, "tooltip": false }
+      ]
+    },
+    "edge": {
+      "rawkey": "@@edgeSet",
+      "attributes": [
+        { "id": "edgeId", "displayname": "Edge ID", "rawpath": "", "required": true, "tooltip": false }
+      ]
+    },
+    "nodetypes": { "id": "entity", "displayname": "Entity", "color": "#80B9E7", "imagepath": "assets/images/customer.png",
+                      "attributes": [ 
+                                      { "id": "entityid", "displayname": "EntityID", "rawpath": ["attributes", "entityid"], "required": false, "tooltip": false }
+                                  ]
+    },
+    "alerts": [
+      { "id": "CASE-FRD", "attribute": "attribute/casetype", "valuetype": "string", "value": "FRD", "alertmessage": "FRD Case Found!" }
+  ]
+}

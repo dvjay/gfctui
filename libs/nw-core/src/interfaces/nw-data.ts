@@ -42,8 +42,8 @@ export interface INodeType {
 export interface IEdge extends SimulationLinkDatum<SimulationNodeDatum> {
   index?: number;
   id: string;
-  source: INode | string | undefined;
-  target: INode | string | undefined;
+  // source: INode | string | undefined;
+  // target: INode | string | undefined;
   sourceNodeId: string;
   targetNodeId: string;
   name?: string;
