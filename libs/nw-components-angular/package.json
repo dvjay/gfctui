@@ -18,15 +18,15 @@
     "@angular/material": "^12.0.0-rc.2",
     "@gfct/nw-core": "1.0.0",
     "@ngrx/effects": "^12.0.0-rc.0",
-    "@ngrx/entity": "^12.0.0-rc.0",
+    "@ngrx/schematics": "^12.0.0-rc.0",
     "@ngrx/store": "^12.0.0-rc.0",
-    "@ngrx/store-devtools": "^12.0.0-rc.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.0.0-rc.2",
     "@angular/cli": "~12.0.0-rc.2",
     "@angular/compiler-cli": "~12.0.0-rc.2",
+    "@ngrx/store-devtools": "^12.0.0-rc.0",
     "@tailwindcss/aspect-ratio": "latest",
     "@tailwindcss/forms": "latest",
     "@tailwindcss/line-clamp": "latest",

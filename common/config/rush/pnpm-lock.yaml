@@ -14,6 +14,7 @@ dependencies:
   '@angular/router': 12.0.0-rc.2_c081c3ae0fa21fc02af522eb38afc8c4
   '@ngrx/effects': 12.0.0-rc.0_0c11c38c217a97aaedc9945c70d58948
   '@ngrx/entity': 12.0.0-rc.0_0c11c38c217a97aaedc9945c70d58948
+  '@ngrx/schematics': 12.0.0-rc.0
   '@ngrx/store': 12.0.0-rc.0_4ff3c6a7e48245f2ed546b649119d0a7
   '@ngrx/store-devtools': 12.0.0-rc.0_33fceab768d535ee0a96d1ea6bed96b8
   '@rush-temp/gfctui': file:projects/gfctui.tgz
@@ -1862,6 +1863,10 @@ packages:
       rxjs: ^6.5.3
     resolution:
       integrity: sha512-2ELs5GJVoiqS6DX8Lx66fpQZR5tiW5Ml4epQnD3KGj6gDuwCB/mETnLfXI7goJi5xolKm7gMqTK7dR+BJOjpXQ==
+  /@ngrx/schematics/12.0.0-rc.0:
+    dev: false
+    resolution:
+      integrity: sha512-4UitoenZ9djesqmaO7rEbOSw+7ViYO2ISSTajqBguSoZkd1Kv5iXIfLV8UKhnNytHBtHVYNTxOJz/vSfbxxqsA==
   /@ngrx/store-devtools/12.0.0-rc.0_33fceab768d535ee0a96d1ea6bed96b8:
     dependencies:
       '@ngrx/store': 12.0.0-rc.0_4ff3c6a7e48245f2ed546b649119d0a7
@@ -11929,6 +11934,7 @@ packages:
       '@angular/platform-browser-dynamic': 12.0.0-rc.2_76c5181116d48ebbf7c5ddd523b0ef46
       '@ngrx/effects': 12.0.0-rc.0_0c11c38c217a97aaedc9945c70d58948
       '@ngrx/entity': 12.0.0-rc.0_0c11c38c217a97aaedc9945c70d58948
+      '@ngrx/schematics': 12.0.0-rc.0
       '@ngrx/store': 12.0.0-rc.0_4ff3c6a7e48245f2ed546b649119d0a7
       '@ngrx/store-devtools': 12.0.0-rc.0_33fceab768d535ee0a96d1ea6bed96b8
       '@tailwindcss/aspect-ratio': 0.2.0
@@ -11949,7 +11955,7 @@ packages:
     dev: false
     name: '@rush-temp/nw-components-angular'
     resolution:
-      integrity: sha512-rw+JSw5BRVJM+uxdhTGdmBNFd0txqo+fVWK9Cs683XlTchkCPJbWu9q1BJVs4yaiQsEJtUFPQwd0djkw+Fkfcw==
+      integrity: sha512-mT3Ytg2Vrf6zNkH1xBqOcJk9+aswLZ8VbyzOuIXVs10YAMTrxmx6VARx/xRalItIOK+D/ZUhNBrLYCgUgu0Kcg==
       tarball: file:projects/nw-components-angular.tgz
     version: 0.0.0
   file:projects/nw-core.tgz:
@@ -12001,6 +12007,7 @@ specifiers:
   '@angular/router': ~12.0.0-rc.2
   '@ngrx/effects': ^12.0.0-rc.0
   '@ngrx/entity': ^12.0.0-rc.0
+  '@ngrx/schematics': ^12.0.0-rc.0
   '@ngrx/store': ^12.0.0-rc.0
   '@ngrx/store-devtools': ^12.0.0-rc.0
   '@rush-temp/gfctui': file:./projects/gfctui.tgz
