@@ -53,5 +53,5 @@ export type EdgeId = IEdge['id'];
 
 export interface INwData {
   nodes: Map<NodeId, INode>;
-  edges: Map<NodeId, INode>;
+  edges: Map<EdgeId, IEdge>;
 }

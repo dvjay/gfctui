@@ -1,3 +1,3 @@
-export * from './interfaces/nw-data';
-export * from './interfaces/nw-positionable';
+export * from './models/nw-data';
+export * from './models/nw-positionable';
 export * from './theme';

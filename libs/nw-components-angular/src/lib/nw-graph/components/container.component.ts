@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import * as core from '@gfct/nw-core/src';
+// import * as core from '@gfct/nw-core/src';
+import * as core from '../../../../../nw-core/src';
 
 @Component({
   selector: 'gfct-nw-ui',
