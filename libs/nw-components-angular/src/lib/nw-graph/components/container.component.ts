@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 // import * as core from '@gfct/nw-core/src';
 import * as core from '../../../../../nw-core/src';
 
@@ -7,11 +7,17 @@ import * as core from '../../../../../nw-core/src';
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss'],
 })
-export class ContainerComponent implements OnInit {
+export class ContainerComponent implements OnInit, AfterViewInit {
   viewPortheight = core.theme.size.height;
-  @ViewChild('graphcontainer') graphContainer: ElementRef | undefined;
 
   ngOnInit(): void {
     console.log("checking height", core.theme.size.height);
+  }
+
+  ngAfterViewInit() {
+    // setTimeout(() => {
+    //   this.widthContainer = this.graphContainer?.nativeElement?.offsetWidth;
+    //   console.log("graphContainer: ", this.widthContainer);
+    // }, 0);
   }
 }

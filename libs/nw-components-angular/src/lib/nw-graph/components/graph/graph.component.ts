@@ -9,14 +9,14 @@ import * as core from '../../../../../../nw-core/src';
 })
 export class GraphComponent implements OnInit, AfterViewInit {
   viewPortheight = core.theme.size.height;
+  viewPortWidth: number | undefined = 100;
   @Input() containerOfGraph: HTMLElement | undefined;
-  graphWidth: number = 0;
 
   ngOnInit(): void {
     console.log("checking height", core.theme.size.height);
   }
 
   ngAfterViewInit() {
-    const graphWidth = this.containerOfGraph?.offsetWidth;
+    this.viewPortWidth = this.containerOfGraph?.offsetWidth;
   }
 }
