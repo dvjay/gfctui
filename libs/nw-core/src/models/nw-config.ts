@@ -10,17 +10,13 @@ export const defaultNwConfig: Readonly<NwConfig> = Object.freeze({
 });
 
 export const defaultNwNodeConfig: Readonly<NwNode> = Object.freeze({
-  parentKey: "",
   parentRawPath: [],
   nodeIdAttributeKey: "",
   nodeTypeAttributeKey: "",
-  nodeTypes: [],
-  nodeAttributes: [],
-  alerts: []
+  nodeTypes: []
 });
 
 export const defaultNwEdgeConfig: Readonly<NwEdge> = Object.freeze({
-  parentKey: "",
   parentRawPath: [],
   edgeIdAttributeKey: "",
   edgeAttributes: []
@@ -38,27 +34,16 @@ export interface NwConfig {
 }
 
 export interface NwNode {
-  parentKey: string;
   parentRawPath: string[];
   nodeIdAttributeKey: string;
   nodeTypeAttributeKey: string;
   nodeTypes: NwNodeType[];
-  nodeAttributes: NwAttribute[];
-  alerts?: NwAlert[];
 }
 
 export interface NwEdge {
-  parentKey: string;
   parentRawPath: string[];
   edgeIdAttributeKey: string;
   edgeAttributes: NwAttribute[];
-}
-
-export interface NwAttribute {
-  key: string;
-  displayName: string;
-  rawPath: string[];
-  tooltip: boolean;
 }
 
 export interface NwNodeType {
@@ -66,12 +51,11 @@ export interface NwNodeType {
   displayName: string;
   color: string;
   imagePath: string;
+  nodeAttributes: NwAttribute[];
 }
-
-export interface NwAlert {
-  id: string;
-  nodeAttributeKey: string;
-  valueType: string;
-  value: string;
-  alertMessage: string;
+export interface NwAttribute {
+  key: string;
+  displayName: string;
+  rawPath: string[];
+  tooltip: boolean;
 }

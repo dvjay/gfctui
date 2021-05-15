@@ -6,23 +6,23 @@
   "maxNodeCount": 200,
   "viewportHeight": 700,
   "node": {
-    "parentKey": "printSet",
-    "parentRawPath": [""],
+    "parentRawPath": ["printSet"],
     "nodeIdAttributeKey": "nodeId",
     "nodeTypeAttributeKey": "nodeType",
-    "nodeTypes": [{ "key": "entity", "displayName": "Entity", "color": "#80B9E7", "imagePath": "assets/images/customer.png"}
-    ],
-    "nodeAttributes": [
-      { "key": "nodeId", "displayName": "Node ID", "rawPath": ["v_id"], "tooltip": false },
-      { "key": "nodeType", "displayName": "Node Type", "rawPath": ["v_type"], "tooltip": false }
-    ],
-    "alerts": [
-      { "nodeAttributeKey": "case", "valueType": "string", "value": "FRD", "message": "FRD Case Found!" }
+    "nodeTypes": [{ "key": "entity", "displayName": "Entity", "color": "#80B9E7", "imagePath": "assets/images/customer.png",
+                    "nodeAttributes": [
+                      { "key": "nodeId", "displayName": "Node ID", "rawPath": ["v_id"], "tooltip": false },
+                      { "key": "nodeType", "displayName": "Node Type", "rawPath": ["v_type"], "tooltip": false }
+                    ]},
+                    { "key": "party", "displayName": "Entity", "color": "#80B9E7", "imagePath": "assets/images/customer.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["v_id"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["v_type"], "tooltip": false }
+                      ]}
     ]
   },
   "edge": {
-    "parentKey": "@@edgeSet",
-    "parentRawPath": [""],
+    "parentRawPath": ["@@edgeSet"],
     "edgeIdAttributeKey": "id",
     "edgeAttributes": [
       { "key": "edgeId", "displayName": "Edge ID", "rawPath": ["attributes", "id"], "tooltip": false }

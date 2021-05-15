@@ -37,6 +37,7 @@ export interface INodeType {
   imagePath: string;
   attributeIds: Set<NodeAttributeId>;
   attributes: Map<NodeAttributeId, INodeAttribute>;
+  // alerts: 
 }
 
 export interface IEdge extends SimulationLinkDatum<SimulationNodeDatum> {

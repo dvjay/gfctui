@@ -1,7 +1,8 @@
-import { defaultNwEdgeConfig, defaultNwNodeConfig, NwAlert, NwAttribute, NwEdge, NwNodeType } from './../models/nw-config';
+import { defaultNwEdgeConfig, defaultNwNodeConfig, NwAttribute, NwEdge, NwNodeType } from './../models/nw-config';
 import { defaultNwConfig, NwConfig, NwNode } from "../models/nw-config";
-import { INwData } from "../models/nw-data";
+import { EdgeId, IEdge, INode, INwData, NodeId } from "../models/nw-data";
 import { toNumber } from "../utils";
+import _ from 'lodash';
 
 interface NwRawConfig {
   [key: string]: unknown;
@@ -19,9 +20,6 @@ export default class ConfigEngine {
       this.setMandatoryConfig();
       this.setNodeConfig();
       this.setNodeTypesConfig();
-      this.setNodeAttributesConfig();
-      this.setNodeAlertsConfig();
-      this.setEdgeAttributesConfig();
 
       this.setEdgeConfig();
       this.setEdgeAttributesConfig();
@@ -57,9 +55,6 @@ export default class ConfigEngine {
 
   private setNodeConfig() {
     let nodeRawConfig = (this.nwRawConfig && this.nwRawConfig.node? this.nwRawConfig.node: {}) as NwNode;
-    if(typeof nodeRawConfig.parentKey === 'string') {
-      this.nwConfig.node.parentKey = nodeRawConfig.parentKey;
-    }
     if(Array.isArray(nodeRawConfig.parentRawPath)) {
       this.nwConfig.node.parentRawPath = nodeRawConfig.parentRawPath;
     }
@@ -75,48 +70,29 @@ export default class ConfigEngine {
     let nodeTypesRawConfig = (this.nwRawConfig && this.nwRawConfig.node && Array.isArray((this.nwRawConfig.node as NwNode).nodeTypes)? 
                               (this.nwRawConfig.node as NwNode).nodeTypes: []) as NwNodeType[];
     for (const nodeTypeFromConfig of nodeTypesRawConfig) {
+      let nodeAttributes = [];
+      let nodeAttributesRawConfig = Array.isArray(nodeTypeFromConfig.nodeAttributes)? nodeTypeFromConfig.nodeAttributes: [];
+      for (const nAttr of nodeAttributesRawConfig) {
+        nodeAttributes.push({
+          key: typeof nAttr.key === 'string'? nAttr.key: "",
+          displayName: typeof nAttr.displayName === 'string'? nAttr.displayName: "",
+          rawPath: Array.isArray(nAttr.rawPath)? nAttr.rawPath: [],
+          tooltip: typeof nAttr.tooltip === 'boolean'? nAttr.tooltip: false
+        });
+      }
+
       this.nwConfig.node.nodeTypes.push({
         key: typeof nodeTypeFromConfig.key === 'string'? nodeTypeFromConfig.key : "",
         displayName: typeof nodeTypeFromConfig.displayName === 'string'? nodeTypeFromConfig.displayName : "",
         color: typeof nodeTypeFromConfig.color === 'string'? nodeTypeFromConfig.color : "",
-        imagePath: typeof nodeTypeFromConfig.imagePath === 'string'? nodeTypeFromConfig.imagePath : ""
+        imagePath: typeof nodeTypeFromConfig.imagePath === 'string'? nodeTypeFromConfig.imagePath : "",
+        nodeAttributes: nodeAttributes
       });
     }
   }
 
-  setNodeAttributesConfig() {
-    let nodeAttributesRawConfig = (this.nwRawConfig && this.nwRawConfig.node && Array.isArray((this.nwRawConfig.node as NwNode).nodeAttributes)? 
-                              (this.nwRawConfig.node as NwNode).nodeAttributes: []) as NwAttribute[];
-    for (const nodeAttributeFromConfig of nodeAttributesRawConfig) {
-      this.nwConfig.node.nodeAttributes.push({
-        key: typeof nodeAttributeFromConfig.key === 'string'? nodeAttributeFromConfig.key : "",
-        displayName: typeof nodeAttributeFromConfig.displayName === 'string'? nodeAttributeFromConfig.displayName : "",
-        rawPath: typeof nodeAttributeFromConfig.rawPath === 'string'? nodeAttributeFromConfig.rawPath : [],
-        tooltip: typeof nodeAttributeFromConfig.tooltip === 'string'? nodeAttributeFromConfig.tooltip : false
-      });
-    }
-  }
-
-  setNodeAlertsConfig() {
-    let nodeAlertsRawConfig = (this.nwRawConfig && this.nwRawConfig.node && Array.isArray((this.nwRawConfig.node as NwNode).alerts)? 
-                              (this.nwRawConfig.node as NwNode).alerts: []) as NwAlert[];
-    for (const nodeAlertFromConfig of nodeAlertsRawConfig) {
-      if(typeof nodeAlertFromConfig.nodeAttributeKey === 'string' && this.nwConfig.node.nodeAttributes.find((x) => x.key === nodeAlertFromConfig.nodeAttributeKey))
-      this.nwConfig.node.alerts.push({
-        id: typeof nodeAlertFromConfig.id === 'string'? nodeAlertFromConfig.id : "",
-        nodeAttributeKey: typeof nodeAlertFromConfig.nodeAttributeKey === 'string'? nodeAlertFromConfig.nodeAttributeKey : "",
-        valueType: typeof nodeAlertFromConfig.valueType === 'string'? nodeAlertFromConfig.valueType : "",
-        value: typeof nodeAlertFromConfig.value === 'string'? nodeAlertFromConfig.value : "",
-        alertMessage: typeof nodeAlertFromConfig.alertMessage === 'string'? nodeAlertFromConfig.alertMessage : ""
-      });
-    }
-  }
-
-  setEdgeConfig() {
+  private setEdgeConfig() {
     let edgeRawConfig = (this.nwRawConfig && this.nwRawConfig.edge? this.nwRawConfig.edge: {}) as NwEdge;
-    if(typeof edgeRawConfig.parentKey === 'string') {
-      this.nwConfig.edge.parentKey = edgeRawConfig.parentKey;
-    }
     if(Array.isArray(edgeRawConfig.parentRawPath)) {
       this.nwConfig.edge.parentRawPath = edgeRawConfig.parentRawPath;
     }
@@ -125,7 +101,7 @@ export default class ConfigEngine {
     }
   }
 
-  setEdgeAttributesConfig() {
+  private setEdgeAttributesConfig() {
     let edgeAttributesRawConfig = (this.nwRawConfig && this.nwRawConfig.edge && Array.isArray((this.nwRawConfig.edge as NwEdge).edgeAttributes)? 
                               (this.nwRawConfig.edge as NwEdge).edgeAttributes: []) as NwAttribute[];
     for (const edgeAttributeFromConfig of edgeAttributesRawConfig) {
@@ -136,6 +112,23 @@ export default class ConfigEngine {
         tooltip: typeof edgeAttributeFromConfig.tooltip === 'string'? edgeAttributeFromConfig.tooltip : false
       });
     }
+  }
+
+  public getNetworkData(rawData: unknown) {
+    const nwData = {
+      nodes: new Map<NodeId, INode>(),
+      edges: new Map<EdgeId, IEdge>()
+    } as INwData;
+
+    const nodeCollection = _.get(rawData, this.nwConfig.node.parentRawPath);
+    const edgeCollection = _.get(rawData, this.nwConfig.edge.parentRawPath);
+    if(Array.isArray(nodeCollection)) {
+
+    }
+    if(nwData.nodes.size > 0 && Array.isArray(edgeCollection)) {
+
+    }
+    return nwData;
   }
 
   private getDefaultConfig(): NwConfig {
