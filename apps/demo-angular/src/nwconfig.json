@@ -2,26 +2,30 @@
     "maxSelectedNodes": 5,
     "displayLabel": true,
     "autoExpand": false,
-    "viewportheight": 700,
+    "numHops": 2,
+    "maxNodeCount": 200,
+    "viewportHeight": 700,
     "node": {
-      "rawkey": "printSet",
-      "attributes": [
-        { "id": "nodeId", "displayname": "Node ID", "rawpath": "v_id", "required": true, "tooltip": false },
-        { "id": "nodeType", "displayname": "Node Type", "rawpath": "v_type", "required": true, "tooltip": false }
+      "parentKey": "printSet",
+      "parentRawPath": [""],
+      "nodeIdAttributeName": "id",
+      "nodeTypeAttributeName": "id",
+      "nodeTypes": [{ "id": "entity", "displayName": "Entity", "color": "#80B9E7", "imagePath": "assets/images/customer.png"}
+      ],
+      "nodeAttributes": [
+        { "id": "nodeId", "displayName": "Node ID", "rawPath": ["v_id"], "required": true, "tooltip": false },
+        { "id": "nodeType", "displayName": "Node Type", "rawPath": ["v_type"], "required": true, "tooltip": false }
+      ],
+      "alerts": [
+        { "id": "CASE-FRD", "rawPath": ["attribute", "casetype"], "valueType": "string", "value": "FRD", "alertMessage": "FRD Case Found!" }
       ]
     },
     "edge": {
-      "rawkey": "@@edgeSet",
-      "attributes": [
-        { "id": "edgeId", "displayname": "Edge ID", "rawpath": "", "required": true, "tooltip": false }
+      "parentKey": "@@edgeSet",
+      "parentRawPath": [""],
+      "edgeIdAttributeName": "id",
+      "edgeAttributes": [
+        { "id": "edgeId", "displayName": "Edge ID", "rawPath": ["attributes", "id"], "required": true, "tooltip": false }
       ]
-    },
-    "nodetypes": { "id": "entity", "displayname": "Entity", "color": "#80B9E7", "imagepath": "assets/images/customer.png",
-                      "attributes": [ 
-                                      { "id": "entityid", "displayname": "EntityID", "rawpath": ["attributes", "entityid"], "required": false, "tooltip": false }
-                                  ]
-    },
-    "alerts": [
-      { "id": "CASE-FRD", "attribute": "attribute/casetype", "valuetype": "string", "value": "FRD", "alertmessage": "FRD Case Found!" }
-  ]
+    }
 }
