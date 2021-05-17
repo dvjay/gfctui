@@ -1,3 +1,5 @@
+import { EMPTY_STRING } from "../utils";
+
 export const defaultNwConfig: Readonly<NwConfig> = Object.freeze({
   maxSelectedNodes: 2,
   displayLabel: true,
@@ -12,18 +14,25 @@ export const defaultNwConfig: Readonly<NwConfig> = Object.freeze({
 
 export const defaultNwNodeConfig: Readonly<NwNode> = Object.freeze({
   parentRawPath: [],
-  nodeIdAttributeKey: "",
-  nodeTypeAttributeKey: "",
-  nodeTitleAttributeKey: "",
+  nodeIdAttribute: null,
+  nodeTypeAttribute: null,
+  nodeTitleAttribute: null,
   nodeTypes: []
 });
 
 export const defaultNwEdgeConfig: Readonly<NwEdge> = Object.freeze({
   parentRawPath: [],
-  edgeSourceIdAttributeKey: "",
-  edgeTargetIdAttributeKey: "",
-  edgeTitleAttributeKey: "",
+  edgeSourceIdAttribute: null,
+  edgeTargetIdAttribute: null,
+  edgeTitleAttribute: null,
   edgeAttributes: []
+});
+
+export const defaultNwAttribute: Readonly<NwAttribute> = Object.freeze({
+  key: EMPTY_STRING,
+  displayName: EMPTY_STRING,
+  rawPath: undefined,
+  tooltip: false
 });
 
 export interface NwConfig {
@@ -40,17 +49,17 @@ export interface NwConfig {
 
 export interface NwNode {
   parentRawPath: string[];
-  nodeIdAttributeKey: string;
-  nodeTypeAttributeKey: string;
-  nodeTitleAttributeKey: string;
+  nodeIdAttribute: NwAttribute | null;
+  nodeTypeAttribute: NwAttribute | null;
+  nodeTitleAttribute: NwAttribute | null;
   nodeTypes: NwNodeType[];
 }
 
 export interface NwEdge {
   parentRawPath: string[];
-  edgeSourceIdAttributeKey: string;
-  edgeTargetIdAttributeKey: string;
-  edgeTitleAttributeKey: string;
+  edgeSourceIdAttribute: NwAttribute | null;
+  edgeTargetIdAttribute: NwAttribute | null;
+  edgeTitleAttribute: NwAttribute | null;
   edgeAttributes: NwAttribute[];
 }
 
@@ -62,8 +71,8 @@ export interface NwNodeType {
   nodeAttributes: NwAttribute[];
 }
 export interface NwAttribute {
-  key: string;
-  displayName: string;
-  rawPath: string[];
-  tooltip: boolean;
+  key?: string;
+  displayName?: string;
+  rawPath: string[] | undefined;
+  tooltip?: boolean;
 }

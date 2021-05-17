@@ -7,32 +7,105 @@
   "viewportHeight": 700,
   "nodeRadius": 20,
   "node": {
-    "parentRawPath": ["nodeRows"],
-    "nodeIdAttributeKey": "nodeId",
-    "nodeTypeAttributeKey": "nodeType",
-    "nodeTitleAttributeKey": "label",
+    "parentRawPath": ["nodes"],
+    "nodeIdAttribute": { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+    "nodeTypeAttribute": { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+    "nodeTitleAttribute": { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
     "nodeTypes": [{ "name": "entity", "displayName": "Entity", "color": "#80B9E7", "imagePath": "assets/images/entity.png",
                     "nodeAttributes": [
-                      { "key": "entityId", "displayName": "Entity ID", "rawPath": ["entityId"], "tooltip": false },
                       { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
-                      { "key": "nodeType", "displayName": "Node Type", "rawPath": ["rawNodeObject", "nodeType"], "tooltip": false },
-                      { "key": "accno", "displayName": "Account Number", "rawPath": ["rawNodeObject", "accno"], "tooltip": false }
+                      { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                      { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                      { "key": "entityid", "displayName": "Account ID", "rawPath": ["entityid"], "tooltip": false },
+                      { "key": "entitylabel", "displayName": "Account Number", "rawPath": ["entitylabel"], "tooltip": false },
+                      { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]},
+                    { "name": "account", "displayName": "Account", "color": "#80B9E7", "imagePath": "assets/images/account.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "amlaccid", "displayName": "Account ID", "rawPath": ["amlaccid"], "tooltip": false },
+                        { "key": "accno", "displayName": "Account Number", "rawPath": ["accno"], "tooltip": false },
+                        { "key": "accom", "displayName": "Account OM", "rawPath": ["accom"], "tooltip": false },
+                        { "key": "accopendate", "displayName": "Account Open Date", "rawPath": ["accopendate"], "tooltip": false },
+                        { "key": "accptyrolecd", "displayName": "Account Party Role Code", "rawPath": ["accptyrolecd"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
                     ]},
                     { "name": "party", "displayName": "Party", "color": "#80B9E7", "imagePath": "assets/images/party.png",
                       "nodeAttributes": [
                         { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
-                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["rawNodeObject", "nodeType"], "tooltip": false }
-                      ]}
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "amlptyid", "displayName": "AML PTY ID", "rawPath": ["amlptyid"], "tooltip": false },
+                        { "key": "partyfullname", "displayName": "Party Full Name", "rawPath": ["partyfullname"], "tooltip": false },
+                        { "key": "ptyid", "displayName": "Party ID", "rawPath": ["ptyid"], "tooltip": false },
+                        { "key": "gcino", "displayName": "GCI No.", "rawPath": ["gcino"], "tooltip": false },
+                        { "key": "mlid", "displayName": "ML ID", "rawPath": ["mlid"], "tooltip": false },
+                        { "key": "itn", "displayName": "ITN", "rawPath": ["itn"], "tooltip": false },
+                        { "key": "ssn", "displayName": "SSN", "rawPath": ["ssn"], "tooltip": false },
+                        { "key": "ein", "displayName": "EIN", "rawPath": ["ein"], "tooltip": false },
+                        { "key": "flucd", "displayName": "FLU Code", "rawPath": ["flucd"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]},
+                    { "name": "email", "displayName": "Email", "color": "#80B9E7", "imagePath": "assets/images/email.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "emailaddress", "displayName": "Email Address", "rawPath": ["emailaddress"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]},
+                    { "name": "address", "displayName": "Address", "color": "#80B9E7", "imagePath": "assets/images/address.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "partyaddress", "displayName": "Party Address", "rawPath": ["partyaddress"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]},
+                    { "name": "ein", "displayName": "EIN", "color": "#80B9E7", "imagePath": "assets/images/ein.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "ein", "displayName": "EIN", "rawPath": ["ein"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]},
+                    { "name": "itn", "displayName": "ITN", "color": "#80B9E7", "imagePath": "assets/images/itn.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "itn", "displayName": "ITN", "rawPath": ["itn"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]},
+                    { "name": "ssn", "displayName": "SSN", "color": "#80B9E7", "imagePath": "assets/images/ssn.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "ssn", "displayName": "ITN", "rawPath": ["ssn"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]},
+                    { "name": "phone", "displayName": "Phone", "color": "#80B9E7", "imagePath": "assets/images/phone.png",
+                      "nodeAttributes": [
+                        { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+                        { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
+                        { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+                        { "key": "phonenumber", "displayName": "Phone Number", "rawPath": ["phonenumber"], "tooltip": false },
+                        { "key": "isskewed", "displayName": "Skewed", "rawPath": ["isskewed"], "tooltip": false }
+                    ]}
     ]
   },
   "edge": {
-    "parentRawPath": ["linkRows"], 
-    "edgeSourceIdAttributeKey": "sourceNodeId",
-    "edgeTargetIdAttributeKey": "targetNodeId",
-    "edgeTitleAttributeKey": "name",
+    "parentRawPath": ["links"], 
+    "edgeSourceIdAttribute": { "key": "source", "displayName": "Source Node Id", "rawPath": ["source"], "tooltip": false },
+    "edgeTargetIdAttribute": { "key": "target", "displayName": "Target Node Id", "rawPath": ["target"], "tooltip": false },
+    "edgeTitleAttribute": { "key": "name", "displayName": "Name", "rawPath": ["name"], "tooltip": false },
     "edgeAttributes": [
-      { "key": "sourceNodeId", "displayName": "Source Node Id", "rawPath": ["rawNodeObject", "source"], "tooltip": false },
-      { "key": "targetNodeId", "displayName": "Target Node Id", "rawPath": ["rawNodeObject", "target"], "tooltip": false },
+      { "key": "source", "displayName": "Source Node Id", "rawPath": ["source"], "tooltip": false },
+      { "key": "target", "displayName": "Target Node Id", "rawPath": ["target"], "tooltip": false },
       { "key": "name", "displayName": "Name", "rawPath": ["name"], "tooltip": false }
     ]
   }

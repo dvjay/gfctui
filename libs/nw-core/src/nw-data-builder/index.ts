@@ -2,7 +2,7 @@ import {get as lodashGet} from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { EdgeId, IEdge, INode, INwData, NodeId, NodeNeighbourStatus } from '../models/nw-data';
 import { NwConfigParser } from '../nw-config-parser';
-import { EMPTY_STRING } from '../utils';
+import { EMPTY_STRING, isArrayOfNonEmptyStrings, isStringNullorEmpty } from '../utils';
 
 export class NwDataBuilder {
   public nwData: INwData = {
@@ -55,93 +55,103 @@ export class NwDataBuilder {
   }
 
   private loadNwEdgeAttributesFromRawNode(rawEdge: unknown, nwEdge: IEdge) {
-    if (
-      this.nwConfigParser &&
-      Array.isArray(this.nwConfigParser.nwNodeTypeRawPath)
-    ) {
-      const eAttrs = this.nwConfigParser.nwConfig.edge?.edgeAttributes;
-
-      if(Array.isArray(eAttrs)) {
-        for (const eAttr of eAttrs) {
-          nwEdge[eAttr.key] = lodashGet(rawEdge, eAttr.rawPath, null);
+    const edgeSourceRawPath =
+      this.nwConfigParser?.nwConfig?.edge?.edgeSourceIdAttribute?.rawPath;
+    const edgeTargetRawPath =
+      this.nwConfigParser?.nwConfig?.edge?.edgeTargetIdAttribute?.rawPath;
+    const edgeTitleRawPath =
+      this.nwConfigParser?.nwConfig?.edge?.edgeTitleAttribute?.rawPath;
+    const eAttrs = this.nwConfigParser.nwConfig.edge?.edgeAttributes;
+    if (Array.isArray(eAttrs)) {
+      for (const eAttr of eAttrs) {
+        if (eAttr?.key && !isStringNullorEmpty(eAttr.key)) {
+          nwEdge[eAttr.key] = lodashGet(rawEdge, eAttr.rawPath as string[], null);
         }
       }
+    }
+    // Set Edge Source ID
+    if(isArrayOfNonEmptyStrings(edgeSourceRawPath)) {
+      nwEdge.source = lodashGet(rawEdge, edgeSourceRawPath as string[], EMPTY_STRING);
+    }
+    // Set Edge target Type
+    if(isArrayOfNonEmptyStrings(edgeTargetRawPath)) {
+      nwEdge.target = lodashGet(rawEdge, edgeTargetRawPath as string[], EMPTY_STRING);
+    }
+    // Set Edge Title
+    if(isArrayOfNonEmptyStrings(edgeTitleRawPath)) {
+      nwEdge.title = lodashGet(rawEdge, edgeTitleRawPath as string[], EMPTY_STRING);
     }
   }
 
   private loadNwNodeAttributesFromRawNode(rawNode: unknown, nwNode: INode) {
-    if (
-      this.nwConfigParser &&
-      Array.isArray(this.nwConfigParser.nwNodeTypeRawPath)
-    ) {
-      // Step 1: Get Node Type
-      const nodeType = lodashGet(
-        rawNode,
-        this.nwConfigParser.nwNodeTypeRawPath,
-        null
-      );
-      // Step 2: Get Node Type Config
-      const nodeTypeConfig = this.nwConfigParser.nwNodeTypes.get(nodeType);
-      if (nodeTypeConfig) {
-        // Step 3: Get Node Type attributes
-        const nAttrs = Array.isArray(nodeTypeConfig.nodeAttributes)
-          ? nodeTypeConfig.nodeAttributes
-          : [];
-        for (const nAttr of nAttrs) {
-          nwNode[nAttr.key] = lodashGet(rawNode, nAttr.rawPath, null);
+    const nodeIdRawPath =
+      this.nwConfigParser?.nwConfig?.node?.nodeIdAttribute?.rawPath;
+    const nodeTypeRawPath =
+      this.nwConfigParser?.nwConfig?.node?.nodeTypeAttribute?.rawPath;
+    const nodeTitleRawPath =
+      this.nwConfigParser?.nwConfig?.node?.nodeTitleAttribute?.rawPath;
+    // Step 1: Get Node Type
+    const nodeType = lodashGet(rawNode, nodeTypeRawPath as string[], EMPTY_STRING);
+    // Step 2: Get Node Type Config
+    const nodeTypeConfig = this.nwConfigParser.nwNodeTypes.get(nodeType);
+    // Step 3: Get NodeType attributes
+    const nAttrs = nodeTypeConfig?.nodeAttributes;
+    if (Array.isArray(nAttrs)) {
+      for (const nAttr of nAttrs) {
+        if (nAttr?.key && !isStringNullorEmpty(nAttr?.key) && isArrayOfNonEmptyStrings(nAttr?.rawPath)) {
+          nwNode[nAttr.key] = lodashGet(rawNode, nAttr.rawPath as string[], EMPTY_STRING);
         }
       }
+    }
+    // Set Node ID
+    if(isArrayOfNonEmptyStrings(nodeIdRawPath)) {
+      nwNode.id = lodashGet(rawNode, nodeIdRawPath as string[], EMPTY_STRING);
+    }
+    // Set Node Type
+    if(isArrayOfNonEmptyStrings(nodeTypeRawPath)) {
+      nwNode.type = lodashGet(rawNode, nodeTypeRawPath as string[], EMPTY_STRING);
+    }
+    // Set Node Title
+    if(isArrayOfNonEmptyStrings(nodeTitleRawPath)) {
+      nwNode.title = lodashGet(rawNode, nodeTitleRawPath as string[], EMPTY_STRING);
     }
   }
 
   private sanitizeNwNode(nwNode: INode) {
-    if(this.nwConfigParser?.nwConfig?.node) {
-      const nId = nwNode[this.nwConfigParser.nwConfig.node.nodeIdAttributeKey];
-      const nType =
-        nwNode[this.nwConfigParser.nwConfig.node.nodeTypeAttributeKey];
-      const nTitle =
-        nwNode[this.nwConfigParser.nwConfig.node.nodeTitleAttributeKey];
-      if (nwNode) {
-        nwNode.id =
-          typeof nId === 'string' || typeof nId === 'number'
-            ? nId.toString()
-            : EMPTY_STRING;
-        nwNode.type =
-          typeof nType === 'string' || typeof nType === 'number'
-            ? nType.toString()
-            : EMPTY_STRING;
-        nwNode.r = this.nwConfigParser.nwConfig.nodeRadius;
-        nwNode.sourceIds = [];
-        nwNode.targetIds = [];
-        nwNode.neighbourStatus = NodeNeighbourStatus.NOT_LOADED;
-      }
+    if (typeof nwNode === 'object') {
+      nwNode.id =
+        typeof nwNode?.id === 'string' || typeof nwNode?.id === 'number'
+          ? nwNode.id.toString()
+          : EMPTY_STRING;
+      nwNode.type =
+        typeof nwNode?.type === 'string' || typeof nwNode?.type === 'number'
+          ? nwNode.type.toString()
+          : EMPTY_STRING;
+      nwNode.r = this.nwConfigParser.nwConfig.nodeRadius;
+      nwNode.sourceIds = [];
+      nwNode.targetIds = [];
+      nwNode.neighbourStatus = NodeNeighbourStatus.NOT_LOADED;
     }
   }
-  
+
   private sanitizeNwEdge(nwEdge: IEdge) {
-    if(this.nwConfigParser?.nwConfig?.edge) {
-      const edgeId = nwEdge.id;
-      const sourceKeyId = nwEdge[this.nwConfigParser.nwConfig.edge.edgeSourceIdAttributeKey];
-      const targetKeyId = nwEdge[this.nwConfigParser.nwConfig.edge.edgeTargetIdAttributeKey];
-      const edgeTitle = nwEdge[this.nwConfigParser.nwConfig.edge.edgeTitleAttributeKey];
-      if (nwEdge) {
-        nwEdge.source =
-          typeof sourceKeyId === 'string' || typeof sourceKeyId === 'number'
-            ? sourceKeyId.toString()
-            : EMPTY_STRING;
-        nwEdge.target =
-          typeof targetKeyId === 'string' || typeof targetKeyId === 'number'
-            ? targetKeyId.toString()
-            : EMPTY_STRING;
-        nwEdge.title =
-          typeof edgeTitle === 'string' || typeof edgeTitle === 'number'
-            ? edgeTitle.toString()
-            : EMPTY_STRING;
-        nwEdge.id =
-          typeof edgeId === 'string' || typeof edgeId === 'number'
-            ? edgeTitle.toString()
-            : uuidv4();
-      }
+    if (typeof nwEdge === 'object') {
+      nwEdge.source =
+      typeof nwEdge.source === 'string' || typeof nwEdge.source === 'number'
+        ? nwEdge.source.toString()
+        : EMPTY_STRING;
+      nwEdge.target =
+        typeof nwEdge.target === 'string' || typeof nwEdge.target === 'number'
+          ? nwEdge.target.toString()
+          : EMPTY_STRING;
+      nwEdge.title =
+        typeof nwEdge.title === 'string' || typeof nwEdge.title === 'number'
+          ? nwEdge.title.toString()
+          : EMPTY_STRING;
+      nwEdge.id =
+        typeof nwEdge.id === 'string' || typeof nwEdge.id === 'number'
+          ? nwEdge.id.toString()
+          : uuidv4();
     }
   }
 
@@ -168,11 +178,17 @@ export class NwDataBuilder {
     let targetValid = false;
     if (nwEdge) {
       // Validating Source Node ID
-      if (typeof nwEdge.source === 'string' && nwEdge.source.trim().length > 0) {
+      if (
+        typeof nwEdge.source === 'string' &&
+        nwEdge.source.trim().length > 0
+      ) {
         sourceValid = true;
       }
       // Validating Target Node Type
-      if (typeof nwEdge.target === 'string' && nwEdge.target.trim().length > 0) {
+      if (
+        typeof nwEdge.target === 'string' &&
+        nwEdge.target.trim().length > 0
+      ) {
         targetValid = true;
       }
       return sourceValid && targetValid;

@@ -1,6 +1,6 @@
-import { defaultNwEdgeConfig, defaultNwNodeConfig, NwAttribute, NwEdge, NwNodeType } from '../models/nw-config';
+import { defaultNwAttribute, defaultNwEdgeConfig, defaultNwNodeConfig, NwAttribute, NwEdge, NwNodeType } from '../models/nw-config';
 import { defaultNwConfig, NwConfig, NwNode } from "../models/nw-config";
-import { EMPTY_STRING, toBoolean, toPositiveInteger } from "../utils";
+import { EMPTY_STRING, isArrayOfNonEmptyStrings, isStringNullorEmpty, toBoolean, toPositiveInteger } from "../utils";
 // import * as _ from "lodash";
 
 interface NwRawConfig {
@@ -11,7 +11,6 @@ export class NwConfigParser {
   private nwRawConfig: NwRawConfig | null;
   public nwConfig: NwConfig = {...defaultNwConfig, node: null, edge: null};
   public nwNodeTypes = new Map<string, NwNodeType>();
-  public nwNodeTypeRawPath: string[] | undefined;
 
   constructor(config: NwRawConfig) {
     if(typeof config === 'object') {
@@ -48,17 +47,37 @@ export class NwConfigParser {
   private setNodeConfig() {
     let nodeRawConfig = (this.nwRawConfig && this.nwRawConfig.node? this.nwRawConfig.node: {}) as NwNode;
     this.nwConfig.node = {...defaultNwNodeConfig};
-    if(Array.isArray(nodeRawConfig.parentRawPath)) {
+    if(isArrayOfNonEmptyStrings(nodeRawConfig.parentRawPath)) {
       this.nwConfig.node.parentRawPath = nodeRawConfig.parentRawPath;
+    } else {
+      console.error("Invalid parentRawPath for Nodes");
     }
-    if(typeof nodeRawConfig.nodeIdAttributeKey === 'string') {
-      this.nwConfig.node.nodeIdAttributeKey = nodeRawConfig.nodeIdAttributeKey;
+    if(isArrayOfNonEmptyStrings(nodeRawConfig?.nodeIdAttribute?.rawPath)) {
+      this.nwConfig.node.nodeIdAttribute = {...defaultNwAttribute};
+      this.nwConfig.node.nodeIdAttribute.rawPath = nodeRawConfig?.nodeIdAttribute?.rawPath;
+      !isStringNullorEmpty(nodeRawConfig?.nodeIdAttribute?.key)? this.nwConfig.node.nodeIdAttribute.key = nodeRawConfig?.nodeIdAttribute?.key : null;
+      !isStringNullorEmpty(nodeRawConfig?.nodeIdAttribute?.displayName)? this.nwConfig.node.nodeIdAttribute.displayName = nodeRawConfig?.nodeIdAttribute?.displayName : null;
+      typeof nodeRawConfig?.nodeIdAttribute?.tooltip === 'boolean'? this.nwConfig.node.nodeIdAttribute.tooltip = nodeRawConfig?.nodeIdAttribute?.tooltip : null;
+    } else {
+      console.error("Invalid rawPath in nodeIdAttribute");
     }
-    if(typeof nodeRawConfig.nodeTypeAttributeKey === 'string') {
-      this.nwConfig.node.nodeTypeAttributeKey = nodeRawConfig.nodeTypeAttributeKey;
+    if(isArrayOfNonEmptyStrings(nodeRawConfig?.nodeTypeAttribute?.rawPath)) {
+      this.nwConfig.node.nodeTypeAttribute = {...defaultNwAttribute};
+      this.nwConfig.node.nodeTypeAttribute.rawPath = nodeRawConfig?.nodeTypeAttribute?.rawPath;
+      !isStringNullorEmpty(nodeRawConfig?.nodeTypeAttribute?.key)? this.nwConfig.node.nodeTypeAttribute.key = nodeRawConfig?.nodeTypeAttribute?.key : null;
+      !isStringNullorEmpty(nodeRawConfig?.nodeTypeAttribute?.displayName)? this.nwConfig.node.nodeTypeAttribute.displayName = nodeRawConfig?.nodeTypeAttribute?.displayName : null;
+      typeof nodeRawConfig?.nodeTypeAttribute?.tooltip === 'boolean'? this.nwConfig.node.nodeTypeAttribute.tooltip = nodeRawConfig?.nodeTypeAttribute?.tooltip : null;
+    } else {
+      console.error("Invalid rawPath in nodeTypeAttribute");
     }
-    if(typeof nodeRawConfig.nodeTitleAttributeKey === 'string') {
-      this.nwConfig.node.nodeTitleAttributeKey = nodeRawConfig.nodeTitleAttributeKey;
+    if(isArrayOfNonEmptyStrings(nodeRawConfig?.nodeTitleAttribute?.rawPath)) {
+      this.nwConfig.node.nodeTitleAttribute = {...defaultNwAttribute};
+      this.nwConfig.node.nodeTitleAttribute.rawPath = nodeRawConfig?.nodeTitleAttribute?.rawPath;
+      !isStringNullorEmpty(nodeRawConfig?.nodeTitleAttribute?.key)? this.nwConfig.node.nodeTitleAttribute.key = nodeRawConfig?.nodeTitleAttribute?.key : null;
+      !isStringNullorEmpty(nodeRawConfig?.nodeTitleAttribute?.displayName)? this.nwConfig.node.nodeTitleAttribute.displayName = nodeRawConfig?.nodeTitleAttribute?.displayName : null;
+      typeof nodeRawConfig?.nodeTitleAttribute?.tooltip === 'boolean'? this.nwConfig.node.nodeTitleAttribute.tooltip = nodeRawConfig?.nodeTitleAttribute?.tooltip : null;
+    } else {
+      console.error("Invalid rawPath in nodeTitleAttribute");
     }
   }
 
@@ -70,9 +89,6 @@ export class NwConfigParser {
       let nodeAttributes = [];
       let nodeAttributesRawConfig = Array.isArray(nodeTypeFromConfig.nodeAttributes)? nodeTypeFromConfig.nodeAttributes: [];
       for (const nAttr of nodeAttributesRawConfig) {
-        if(nAttr.key === this.nwConfig?.node?.nodeTypeAttributeKey && !Array.isArray(this.nwNodeTypeRawPath)) {
-          this.nwNodeTypeRawPath = nAttr.rawPath;
-        }
         nodeAttributes.push({
           key: typeof nAttr.key === 'string'? nAttr.key: EMPTY_STRING,
           displayName: typeof nAttr.displayName === 'string'? nAttr.displayName: EMPTY_STRING,
@@ -100,17 +116,41 @@ export class NwConfigParser {
   private setEdgeConfig() {
     let edgeRawConfig = (this.nwRawConfig && this.nwRawConfig.edge? this.nwRawConfig.edge: {}) as NwEdge;
     this.nwConfig.edge = {...defaultNwEdgeConfig};
-    if(Array.isArray(edgeRawConfig.parentRawPath)) {
+
+    if(this.nwConfig?.edge?.parentRawPath && isArrayOfNonEmptyStrings(edgeRawConfig.parentRawPath)) {
       this.nwConfig.edge.parentRawPath = edgeRawConfig.parentRawPath;
+    } else {
+      console.error("Invalid parentRawPath for Edges");
     }
-    if(typeof edgeRawConfig.edgeSourceIdAttributeKey === 'string') {
-      this.nwConfig.edge.edgeSourceIdAttributeKey = edgeRawConfig.edgeSourceIdAttributeKey;
+
+    if(isArrayOfNonEmptyStrings(edgeRawConfig?.edgeSourceIdAttribute?.rawPath)) {
+      this.nwConfig.edge.edgeSourceIdAttribute = {...defaultNwAttribute};
+      this.nwConfig.edge.edgeSourceIdAttribute.rawPath = edgeRawConfig?.edgeSourceIdAttribute?.rawPath;
+      !isStringNullorEmpty(edgeRawConfig?.edgeSourceIdAttribute?.key)? this.nwConfig.edge.edgeSourceIdAttribute.key = edgeRawConfig?.edgeSourceIdAttribute?.key : null;
+      !isStringNullorEmpty(edgeRawConfig?.edgeSourceIdAttribute?.displayName)? this.nwConfig.edge.edgeSourceIdAttribute.displayName = edgeRawConfig?.edgeSourceIdAttribute?.displayName : null;
+      typeof edgeRawConfig?.edgeSourceIdAttribute?.tooltip === 'boolean'? this.nwConfig.edge.edgeSourceIdAttribute.tooltip = edgeRawConfig?.edgeSourceIdAttribute?.tooltip : null;
+    } else {
+      console.error("Invalid rawPath in edgeSourceIdAttribute");
     }
-    if(typeof edgeRawConfig.edgeTargetIdAttributeKey === 'string') {
-      this.nwConfig.edge.edgeTargetIdAttributeKey = edgeRawConfig.edgeTargetIdAttributeKey;
+
+    if(isArrayOfNonEmptyStrings(edgeRawConfig?.edgeTargetIdAttribute?.rawPath)) {
+      this.nwConfig.edge.edgeTargetIdAttribute = {...defaultNwAttribute};
+      this.nwConfig.edge.edgeTargetIdAttribute.rawPath = edgeRawConfig?.edgeTargetIdAttribute?.rawPath;
+      !isStringNullorEmpty(edgeRawConfig?.edgeTargetIdAttribute?.key)? this.nwConfig.edge.edgeTargetIdAttribute.key = edgeRawConfig?.edgeTargetIdAttribute?.key : null;
+      !isStringNullorEmpty(edgeRawConfig?.edgeTargetIdAttribute?.displayName)? this.nwConfig.edge.edgeTargetIdAttribute.displayName = edgeRawConfig?.edgeTargetIdAttribute?.displayName : null;
+      typeof edgeRawConfig?.edgeTargetIdAttribute?.tooltip === 'boolean'? this.nwConfig.edge.edgeTargetIdAttribute.tooltip = edgeRawConfig?.edgeTargetIdAttribute?.tooltip : null;
+    } else {
+      console.error("Invalid rawPath in edgeTargetIdAttribute");
     }
-    if(typeof edgeRawConfig.edgeTitleAttributeKey === 'string') {
-      this.nwConfig.edge.edgeTitleAttributeKey = edgeRawConfig.edgeTitleAttributeKey;
+
+    if(isArrayOfNonEmptyStrings(edgeRawConfig?.edgeTitleAttribute?.rawPath)) {
+      this.nwConfig.edge.edgeTitleAttribute = {...defaultNwAttribute};
+      this.nwConfig.edge.edgeTitleAttribute.rawPath = edgeRawConfig?.edgeTitleAttribute?.rawPath;
+      !isStringNullorEmpty(edgeRawConfig?.edgeTitleAttribute?.key)? this.nwConfig.edge.edgeTitleAttribute.key = edgeRawConfig?.edgeTitleAttribute?.key : null;
+      !isStringNullorEmpty(edgeRawConfig?.edgeTitleAttribute?.displayName)? this.nwConfig.edge.edgeTitleAttribute.displayName = edgeRawConfig?.edgeTitleAttribute?.displayName : null;
+      typeof edgeRawConfig?.edgeTitleAttribute?.tooltip === 'boolean'? this.nwConfig.edge.edgeTitleAttribute.tooltip = edgeRawConfig?.edgeTitleAttribute?.tooltip : null;
+    } else {
+      console.error("Invalid rawPath in edgeTitleAttribute");
     }
   }
 
@@ -128,8 +168,4 @@ export class NwConfigParser {
       }
     }
   }
-
-  // private getDefaultConfig(): NwConfig {
-  //   return {...defaultNwConfig, node: {...defaultNwNodeConfig}, edge: {...defaultNwEdgeConfig}};
-  // }
 }

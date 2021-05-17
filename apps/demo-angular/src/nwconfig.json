@@ -8,9 +8,9 @@
   "nodeRadius": 20,
   "node": {
     "parentRawPath": ["nodes"],
-    "nodeIdAttributeKey": "nodeId",
-    "nodeTypeAttributeKey": "nodeType",
-    "nodeTitleAttributeKey": "label",
+    "nodeIdAttribute": { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
+    "nodeTypeAttribute": { "key": "nodeType", "displayName": "Node Type", "rawPath": ["nodeType"], "tooltip": false },
+    "nodeTitleAttribute": { "key": "label", "displayName": "Label", "rawPath": ["label"], "tooltip": false },
     "nodeTypes": [{ "name": "entity", "displayName": "Entity", "color": "#80B9E7", "imagePath": "assets/images/entity.png",
                     "nodeAttributes": [
                       { "key": "nodeId", "displayName": "Node ID", "rawPath": ["nodeId"], "tooltip": false },
@@ -100,9 +100,9 @@
   },
   "edge": {
     "parentRawPath": ["links"], 
-    "edgeSourceIdAttributeKey": "source",
-    "edgeTargetIdAttributeKey": "target",
-    "edgeTitleAttributeKey": "name",
+    "edgeSourceIdAttribute": { "key": "source", "displayName": "Source Node Id", "rawPath": ["source"], "tooltip": false },
+    "edgeTargetIdAttribute": { "key": "target", "displayName": "Target Node Id", "rawPath": ["target"], "tooltip": false },
+    "edgeTitleAttribute": { "key": "name", "displayName": "Name", "rawPath": ["name"], "tooltip": false },
     "edgeAttributes": [
       { "key": "source", "displayName": "Source Node Id", "rawPath": ["source"], "tooltip": false },
       { "key": "target", "displayName": "Target Node Id", "rawPath": ["target"], "tooltip": false },

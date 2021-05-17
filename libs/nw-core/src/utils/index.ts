@@ -25,3 +25,19 @@ export function toBoolean(param: unknown, defaultValue: boolean): boolean {
     }
     return defaultValue;
 }
+
+export function isStringNullorEmpty(value: any) {
+    return !(typeof value === "string" && value.trim().length > 0)
+}
+
+export function isArrayOfNonEmptyStrings(value: any) {
+    if(Array.isArray(value) && value.length > 0) {
+        for (const iterator of value) {
+            if(isStringNullorEmpty(iterator)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
