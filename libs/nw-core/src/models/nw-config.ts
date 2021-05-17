@@ -5,6 +5,7 @@ export const defaultNwConfig: Readonly<NwConfig> = Object.freeze({
   numHops: 2,
   maxNodeCount: 200,
   viewportHeight: 700,
+  nodeRadius: 20,
   node: null,
   edge: null
 });
@@ -13,12 +14,15 @@ export const defaultNwNodeConfig: Readonly<NwNode> = Object.freeze({
   parentRawPath: [],
   nodeIdAttributeKey: "",
   nodeTypeAttributeKey: "",
+  nodeTitleAttributeKey: "",
   nodeTypes: []
 });
 
 export const defaultNwEdgeConfig: Readonly<NwEdge> = Object.freeze({
   parentRawPath: [],
-  edgeIdAttributeKey: "",
+  edgeSourceIdAttributeKey: "",
+  edgeTargetIdAttributeKey: "",
+  edgeTitleAttributeKey: "",
   edgeAttributes: []
 });
 
@@ -29,6 +33,7 @@ export interface NwConfig {
   numHops: number;
   maxNodeCount: number;
   viewportHeight: number;
+  nodeRadius: number;
   node: NwNode | null;
   edge: NwEdge | null;
 }
@@ -37,17 +42,20 @@ export interface NwNode {
   parentRawPath: string[];
   nodeIdAttributeKey: string;
   nodeTypeAttributeKey: string;
+  nodeTitleAttributeKey: string;
   nodeTypes: NwNodeType[];
 }
 
 export interface NwEdge {
   parentRawPath: string[];
-  edgeIdAttributeKey: string;
+  edgeSourceIdAttributeKey: string;
+  edgeTargetIdAttributeKey: string;
+  edgeTitleAttributeKey: string;
   edgeAttributes: NwAttribute[];
 }
 
 export interface NwNodeType {
-  key: string;
+  name: string;
   displayName: string;
   color: string;
   imagePath: string;

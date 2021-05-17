@@ -9,45 +9,45 @@ export enum NodeNeighbourStatus {
 }
 
 export interface INode extends SimulationNodeDatum {
-  readonly id: string;
-  r: number;
-  isDisplay: boolean;
-  neighbourStatus: NodeNeighbourStatus;
-  sourceIds: Array<NodeId>;
-  targetIds: Array<NodeId>;
+  id?: string;
+  type?: string;
+  title?: string;
+  r?: number;
+  neighbourStatus?: NodeNeighbourStatus;
+  sourceIds?: Array<NodeId>;
+  targetIds?: Array<NodeId>;
+  [key: string]: any;
 }
 
 export type NodeId = INode['id'];
 
 export interface INodeAttribute {
-  id: string;
+  key: string;
   displayName: string;
   rawPath: string;
-  value: string;
-  isRequired: boolean;
-  shouldTooltipDisplay: boolean;
+  tooltip: boolean;
 }
 
-export type NodeAttributeId = INodeAttribute['id'];
+export type NodeAttributeId = INodeAttribute['key'];
 
 export interface INodeType {
-  id: string;
+  name: string;
   displayName: string;
-  colorHex: string;
+  color: string;
   imagePath: string;
-  attributeIds: Set<NodeAttributeId>;
-  attributes: Map<NodeAttributeId, INodeAttribute>;
+  nodeAttributes: INodeAttribute[];
   // alerts: 
 }
 
 export interface IEdge extends SimulationLinkDatum<SimulationNodeDatum> {
   index?: number;
   id: string;
-  // source: INode | string | undefined;
-  // target: INode | string | undefined;
-  sourceNodeId: string;
-  targetNodeId: string;
-  name?: string;
+  source: string;
+  target: string;
+  // sourceNodeId: string;
+  // targetNodeId: string;
+  title?: string;
+  [key: string]: any;
 }
 
 export type EdgeId = IEdge['id'];
