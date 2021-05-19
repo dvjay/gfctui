@@ -1,735 +1,464 @@
 {
-    "nodeRows": [
+    "nodes": [
         {
-            "entityId": "90012877089",
             "nodeId": "12740046",
-            "rawNodeObject": {
-                "nodeId": "12740046",
-                "label": "0091000149166827",
-                "nodeType": "account",
-                "amlaccid": "859934526",
-                "accno": "0091000149166827",
-                "accom": "JESPER C KLASSON",
-                "accopendate": "2012-12-11",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "0091000149166827",
+            "nodeType": "account",
+            "amlaccid": "859934526",
+            "accno": "0091000149166827",
+            "accom": "JESPER C KLASSON",
+            "accopendate": "2012-12-11",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "13145674",
-            "rawNodeObject": {
-                "nodeId": "13145674",
-                "label": "2067994173",
-                "nodeType": "phone",
-                "phonenumber": "2067994173",
-                "isskewed": "N"
-            }
+            "label": "2067994173",
+            "nodeType": "phone",
+            "phonenumber": "2067994173",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "20059998",
-            "rawNodeObject": {
-                "nodeId": "20059998",
-                "label": "11408021511032067",
-                "nodeType": "account",
-                "amlaccid": "973924318",
-                "accno": "11408021511032067",
-                "accom": null,
-                "accopendate": null,
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "11408021511032067",
+            "nodeType": "account",
+            "amlaccid": "973924318",
+            "accno": "11408021511032067",
+            "accom": null,
+            "accopendate": null,
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "2160734",
-            "rawNodeObject": {
-                "nodeId": "2160734",
-                "label": "LANGKARRSVAGEN 34A , TABY 18744,,SE",
-                "nodeType": "address",
-                "partyaddress": "LANGKARRSVAGEN 34A , TABY 18744,,SE",
-                "isskewed": "N"
-            }
+            "label": "LANGKARRSVAGEN 34A , TABY 18744,,SE",
+            "nodeType": "address",
+            "partyaddress": "LANGKARRSVAGEN 34A , TABY 18744,,SE",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "24640068",
-            "rawNodeObject": {
-                "nodeId": "24640068",
-                "label": "0000138117929603",
-                "nodeType": "account",
-                "amlaccid": "998473943",
-                "accno": "0000138117929603",
-                "accom": "LESLIE PATTEN CREWS",
-                "accopendate": "2014-12-22",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000138117929603",
+            "nodeType": "account",
+            "amlaccid": "998473943",
+            "accno": "0000138117929603",
+            "accom": "LESLIE PATTEN CREWS",
+            "accopendate": "2014-12-22",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "2476025",
-            "rawNodeObject": {
-                "nodeId": "2476025",
-                "label": "b_cruzn@live.com",
-                "nodeType": "email",
-                "emailaddress": "b_cruzn@live.com",
-                "isskewed": "N"
-            }
+            "label": "b_cruzn@live.com",
+            "nodeType": "email",
+            "emailaddress": "b_cruzn@live.com",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "27509840",
-            "rawNodeObject": {
-                "nodeId": "27509840",
-                "label": "4313072277746825",
-                "nodeType": "account",
-                "amlaccid": "966758622",
-                "accno": "4313072277746825",
-                "accnm": "JESPER C KLASSON",
-                "accopendate": "2007-09-28",
-                "accptyrolecd": "BORROWER",
-                "isskewed": "N"
-            }
+            "label": "4313072277746825",
+            "nodeType": "account",
+            "amlaccid": "966758622",
+            "accno": "4313072277746825",
+            "accnm": "JESPER C KLASSON",
+            "accopendate": "2007-09-28",
+            "accptyrolecd": "BORROWER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "28568241",
-            "rawNodeObject": {
-                "nodeId": "28568241",
-                "label": "4701341007037536",
-                "nodeType": "account",
-                "amlaccid": "937693576",
-                "accno": "4701341007037536",
-                "accom": "JESPER C KLASSON",
-                "accopendate": "2014-01-18",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "4701341007037536",
+            "nodeType": "account",
+            "amlaccid": "937693576",
+            "accno": "4701341007037536",
+            "accom": "JESPER C KLASSON",
+            "accopendate": "2014-01-18",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "35816530",
-            "rawNodeObject": {
-                "nodeId": "35816530",
-                "label": "10601191810383775",
-                "nodeType": "account",
-                "amlaccid": "623344776",
-                "accno": "10601191810383775",
-                "accm": null,
-                "accopendate": null,
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "10601191810383775",
+            "nodeType": "account",
+            "amlaccid": "623344776",
+            "accno": "10601191810383775",
+            "accm": null,
+            "accopendate": null,
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "36408482",
-            "rawNodeObject": {
-                "nodeId": "36408482",
-                "label": "537940073",
-                "nodeType": "ssn",
-                "ssn": "537940073",
-                "isskewed": "N"
-            }
+            "label": "537940073",
+            "nodeType": "ssn",
+            "ssn": "537940073",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "37614938",
-            "rawNodeObject": {
-                "nodeId": "37614938",
-                "label": "2064501146",
-                "nodeType": "phone",
-                "phonenumber": "2064501146",
-                "isskewed": "N"
-            }
+            "label": "2064501146",
+            "nodeType": "phone",
+            "phonenumber": "2064501146",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "39749231",
-            "rawNodeObject": {
-                "nodeId": "39749231",
-                "label": "2066122352",
-                "nodeType": "phone",
-                "phonenumber": "2066122352",
-                "isskewed": "N"
-            }
+            "label": "2066122352",
+            "nodeType": "phone",
+            "phonenumber": "2066122352",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "43319191",
-            "rawNodeObject": {
-                "nodeId": "43319191",
-                "label": "535781307",
-                "nodeType": "ssn",
-                "ssn": "535781307",
-                "isskewed": "N"
-            }
+            "label": "535781307",
+            "nodeType": "ssn",
+            "ssn": "535781307",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "45729808",
-            "rawNodeObject": {
-                "nodeId": "45729808",
-                "label": "405 8TH ST 98275, MUKILTEO, WA, US",
-                "nodeType": "address",
-                "partyaddress": "405 8TH ST 98275, MUKILTEO, WA ,US",
-                "isskewed": "N"
-            }
+            "label": "405 8TH ST 98275, MUKILTEO, WA, US",
+            "nodeType": "address",
+            "partyaddress": "405 8TH ST 98275, MUKILTEO, WA ,US",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "48703815",
-            "rawNodeObject": {
-                "nodeId": "48703815",
-                "label": "000004701320318875230",
-                "nodeType": "account",
-                "amlaccid": "5937020021",
-                "accno": "000004701320318875230",
-                "accnm": "BRITTANY R CREWS",
-                "accopendate": "2018-01-09",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "000004701320318875230",
+            "nodeType": "account",
+            "amlaccid": "5937020021",
+            "accno": "000004701320318875230",
+            "accnm": "BRITTANY R CREWS",
+            "accopendate": "2018-01-09",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "5020067",
-            "rawNodeObject": {
-                "nodeId": "5020067",
-                "label": "0000138101923851",
-                "nodeType": "account",
-                "amlaccid": "991314139",
-                "accno": "8000138101923851",
-                "accnm": "BRITTANY R CREWS",
-                "accopendate": "2014-11-03",
-                "accptyrolecd": "CO-OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000138101923851",
+            "nodeType": "account",
+            "amlaccid": "991314139",
+            "accno": "8000138101923851",
+            "accnm": "BRITTANY R CREWS",
+            "accopendate": "2014-11-03",
+            "accptyrolecd": "CO-OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "51485677",
-            "rawNodeObject": {
-                "nodeId": "51485677",
-                "label": "11509021557146109",
-                "nodeType": "account",
-                "amlaccid": "1093086326",
-                "accno": "11509021557146109",
-                "accm": null,
-                "accopendate": null,
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "11509021557146109",
+            "nodeType": "account",
+            "amlaccid": "1093086326",
+            "accno": "11509021557146109",
+            "accm": null,
+            "accopendate": null,
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "530725224",
-            "rawNodeObject": {
-                "nodeId": "530725224",
-                "label": "BRITTANY R CREWS",
-                "nodeType": "party",
-                "amlptyid": "530725224",
-                "party fullname": "BRITTANY R CREWS",
-                "ptyid": "40063161026",
-                "gcino": null,
-                "mlid": null,
-                "itn": null,
-                "ssn": "537940073",
-                "ein": null,
-                "flucd": "Consumer Retail Banking",
-                "isskewed": "N"
-            }
+            "label": "BRITTANY R CREWS",
+            "nodeType": "party",
+            "amlptyid": "530725224",
+            "partyfullname": "BRITTANY R CREWS",
+            "ptyid": "40063161026",
+            "gcino": null,
+            "mlid": null,
+            "itn": null,
+            "ssn": "537940073",
+            "ein": null,
+            "flucd": "Consumer Retail Banking",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "53901283",
-            "rawNodeObject": {
-                "nodeId": "53901283",
-                "label": "5524331407745053",
-                "nodeType": "account",
-                "amlaccid": "3291677463",
-                "accno": "5524331407745053",
-                "accom": "BRITTANY R CREWS",
-                "accopendate": "2017-01-03",
-                "accptyrolecd": "BORROWER",
-                "isskewed": "N"
-            }
+            "label": "5524331407745053",
+            "nodeType": "account",
+            "amlaccid": "3291677463",
+            "accno": "5524331407745053",
+            "accom": "BRITTANY R CREWS",
+            "accopendate": "2017-01-03",
+            "accptyrolecd": "BORROWER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "53926936",
-            "rawNodeObject": {
-                "nodeId": "53926936",
-                "label": "4701320324057369",
-                "nodeType": "account",
-                "amlaccid": "9116047761",
-                "accno": "4701320324057369",
-                "accnm": "BRITTANY R CREWS",
-                "accopendate": "2019-11-27",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "4701320324057369",
+            "nodeType": "account",
+            "amlaccid": "9116047761",
+            "accno": "4701320324057369",
+            "accnm": "BRITTANY R CREWS",
+            "accopendate": "2019-11-27",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "558810585",
-            "rawNodeObject": {
-                "nodeId": "558810585",
-                "label": "LESLIE PATTEN CREWS",
-                "nodeType": "party",
-                "amlptyid": "558810585",
-                "party fullname": "LESLIE PATTEN CREWS",
-                "ptyid": "50224553638",
-                "gcino": null,
-                "mlid": null,
-                "itn": null,
-                "ssn": "535781307",
-                "ein": null,
-                "flucd": "Consumer Preferred & Small Business Banking",
-                "isskewed": "N"
-            }
+            "label": "LESLIE PATTEN CREWS",
+            "nodeType": "party",
+            "amlptyid": "558810585",
+            "partyfullname": "LESLIE PATTEN CREWS",
+            "ptyid": "50224553638",
+            "gcino": null,
+            "mlid": null,
+            "itn": null,
+            "ssn": "535781307",
+            "ein": null,
+            "flucd": "Consumer Preferred & Small Business Banking",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "558883107",
-            "rawNodeObject": {
-                "nodeId": "558883107",
-                "label": "JESPER C KLASSON",
-                "nodeType": "party",
-                "amlptyid": "558883107",
-                "party fullname": "JESPER C KLASSON",
-                "ptyid": "50230118075",
-                "gcino": null,
-                "mlid": null,
-                "itn": null,
-                "ssn": "537379389",
-                "ein": null,
-                "Flucd": "Consumer Preferred & Small Business Banking",
-                "isskewed": "N"
-            }
+            "label": "JESPER C KLASSON",
+            "nodeType": "party",
+            "amlptyid": "558883107",
+            "partyfullname": "JESPER C KLASSON",
+            "ptyid": "50230118075",
+            "gcino": null,
+            "mlid": null,
+            "itn": null,
+            "ssn": "537379389",
+            "ein": null,
+            "Flucd": "Consumer Preferred & Small Business Banking",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "659222629",
-            "rawNodeObject": {
-                "nodeId": "659222629",
-                "label": "SEBASTIAN P SARDAL",
-                "nodeType": "party",
-                "amlptyid": "659222629",
-                "party fullname": "SEBASTIAN P SARDAL",
-                "ptyid": "15009261029",
-                "gcino": null,
-                "mlid": null,
-                "itn": null,
-                "ssn": null,
-                "ein": null,
-                "flucd": null,
-                "isskewed": "N"
-            }
+            "label": "SEBASTIAN P SARDAL",
+            "nodeType": "party",
+            "amlptyid": "659222629",
+            "partyfullname": "SEBASTIAN P SARDAL",
+            "ptyid": "15009261029",
+            "gcino": null,
+            "mlid": null,
+            "itn": null,
+            "ssn": null,
+            "ein": null,
+            "flucd": null,
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "66410364",
-            "rawNodeObject": {
-                "nodeId": "66410364",
-                "label": "0000138119456349",
-                "nodeType": "account",
-                "amlaccid": "1093112087",
-                "accno": "0000138119456349",
-                "accnm": "JESPER C KLASSON",
-                "accopendate": "2015-09-02",
-                "accptyrolecd": "CO-OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000138119456349",
+            "nodeType": "account",
+            "amlaccid": "1093112087",
+            "accno": "0000138119456349",
+            "accnm": "JESPER C KLASSON",
+            "accopendate": "2015-09-02",
+            "accptyrolecd": "CO-OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "73216425",
-            "rawNodeObject": {
-                "nodeId": "73216425",
-                "label": "0000138117389803",
-                "nodeType": "account",
-                "amlaccid": "974597209",
-                "accno": "0000138117389803",
-                "accom": "LESLIE PATTEN CREWS",
-                "accopendate": "2014-08-04",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000138117389803",
+            "nodeType": "account",
+            "amlaccid": "974597209",
+            "accno": "0000138117389803",
+            "accom": "LESLIE PATTEN CREWS",
+            "accopendate": "2014-08-04",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "74668037",
-            "rawNodeObject": {
-                "nodeId": "74668037",
-                "label": "537379389",
-                "nodeType": "ssn",
-                "ssn": "537379389",
-                "isskewed": "N"
-            }
+            "label": "537379389",
+            "nodeType": "ssn",
+            "ssn": "537379389",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "74729843",
-            "rawNodeObject": {
-                "nodeId": "74729843",
-                "label": "jesperklasson@hotmail.com",
-                "nodeType": "email",
-                "emailaddress": "jesperklasson@hotmail.com",
-                "isskewed": "N"
-            }
+            "label": "jesperklasson@hotmail.com",
+            "nodeType": "email",
+            "emailaddress": "jesperklasson@hotmail.com",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "77537142",
-            "rawNodeObject": {
-                "nodeId": "77537142",
-                "label": "sebbbe_98@hotmail.com",
-                "nodeType": "email",
-                "emailaddress": "sebbbe_98@hotmail.com",
-                "isskewed": "N"
-            }
+            "label": "sebbbe_98@hotmail.com",
+            "nodeType": "email",
+            "emailaddress": "sebbbe_98@hotmail.com",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "80303889",
-            "rawNodeObject": {
-                "nodeId": "80303889",
-                "label": "20028 15TH AVE NE APT 103 98155, SHORELINE, WA, US",
-                "nodeType": "address",
-                "partyaddress": "20028 15TH AVE NE APT 103 98155, SHORELINE, WA, US",
-                "isskewed": "N"
-            }
+            "label": "20028 15TH AVE NE APT 103 98155, SHORELINE, WA, US",
+            "nodeType": "address",
+            "partyaddress": "20028 15TH AVE NE APT 103 98155, SHORELINE, WA, US",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "82664947",
-            "rawNodeObject": {
-                "nodeId": "82664947",
-                "label": "0000138088283833",
-                "nodeType": "account",
-                "amlaccid": "827250453",
-                "accno": "0000138088283833",
-                "accnm": "JESPER C KLASSON",
-                "accopendate": "2006-05-30",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000138088283833",
+            "nodeType": "account",
+            "amlaccid": "827250453",
+            "accno": "0000138088283833",
+            "accnm": "JESPER C KLASSON",
+            "accopendate": "2006-05-30",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "8274141",
-            "rawNodeObject": {
-                "nodeId": "8274141",
-                "label": "0000138113945393",
-                "nodeType": "account",
-                "amlaccid": "974029258",
-                "accno": "0000138113945393",
-                "accom": "LESLIE PATTEN CREWS",
-                "accopendate": "2014-08-04",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000138113945393",
+            "nodeType": "account",
+            "amlaccid": "974029258",
+            "accno": "0000138113945393",
+            "accom": "LESLIE PATTEN CREWS",
+            "accopendate": "2014-08-04",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "83769659",
-            "rawNodeObject": {
-                "nodeId": "83769659",
-                "label": "4254444913",
-                "nodeType": "phone",
-                "phonenumber": "4254444913",
-                "isskewed": "N"
-            }
+            "label": "4254444913",
+            "nodeType": "phone",
+            "phonenumber": "4254444913",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "87884223",
-            "rawNodeObject": {
-                "nodeId": "87884223",
-                "label": "lucypat@msn.com",
-                "nodeType": "email",
-                "emailaddress": "lucypat@msn.com",
-                "isskewed": "N"
-            }
+            "label": "lucypat@msn.com",
+            "nodeType": "email",
+            "emailaddress": "lucypat@msn.com",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "900126917570",
-            "rawNodeObject": {
-                "nodeId": "900126917570",
-                "label": "SEBASTIAN SARDAL",
-                "nodeType": "entity",
-                "entityid": "900126917570",
-                "entitylabel": "SEBASTIAN SARDAL",
-                "isskewed": "N"
-            }
+            "label": "SEBASTIAN SARDAL",
+            "nodeType": "entity",
+            "entityid": "900126917570",
+            "entitylabel": "SEBASTIAN SARDAL",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "90012877089",
-            "rawNodeObject": {
-                "nodeId": "90012877089",
-                "label": "BRITTANY CREWS",
-                "nodeType": "entity",
-                "entityid": "90012877089",
-                "entitylabel": "BRITTANY CREWS",
-                "isskewed": "N"
-            }
+            "label": "BRITTANY CREWS",
+            "nodeType": "entity",
+            "entityid": "90012877089",
+            "entitylabel": "BRITTANY CREWS",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "90048302406",
-            "rawNodeObject": {
-                "nodeId": "90048302406",
-                "label": "JESPER KLASSON",
-                "nodeType": "entity",
-                "entityid": "90048302406",
-                "entitylabel": "JESPER KLASSON",
-                "isskewed": "N"
-            }
+            "label": "JESPER KLASSON",
+            "nodeType": "entity",
+            "entityid": "90048302406",
+            "entitylabel": "JESPER KLASSON",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "90063307310",
-            "rawNodeObject": {
-                "nodeId": "90063307310",
-                "label": "LESLIE PATTEN CREWS",
-                "nodeType": "entity",
-                "entityid": "90063307310",
-                "entitylabel": "LESLIE PATTEN CREWS",
-                "isskewed": "N"
-            }
+            "label": "LESLIE PATTEN CREWS",
+            "nodeType": "entity",
+            "entityid": "90063307310",
+            "entitylabel": "LESLIE PATTEN CREWS",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "92447658",
-            "rawNodeObject": {
-                "nodeId": "92447658",
-                "label": "58190000000124429",
-                "nodeType": "account",
-                "amlaccid": "590830744",
-                "accno": "58190000000124429",
-                "accnm": null,
-                "accopendate": null,
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "58190000000124429",
+            "nodeType": "account",
+            "amlaccid": "590830744",
+            "accno": "58190000000124429",
+            "accnm": null,
+            "accopendate": null,
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "97447896",
-            "rawNodeObject": {
-                "nodeId": "97447896",
-                "label": "0000000088283833",
-                "nodeType": "account",
-                "amlaccid": "733429899",
-                "accno": "0000000088283833",
-                "accom": "JESPER C KLASSON",
-                "accopendate": "2006-05-30",
-                "accptyrolecd": "OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000000088283833",
+            "nodeType": "account",
+            "amlaccid": "733429899",
+            "accno": "0000000088283833",
+            "accom": "JESPER C KLASSON",
+            "accopendate": "2006-05-30",
+            "accptyrolecd": "OWNER",
+            "isskewed": "N"
         },
         {
-            "entityId": "90012877089",
             "nodeId": "98473299",
-            "rawiodeObject": {
-                "nodeId": "98473299",
-                "label": "0000138113946208",
-                "nodeType": "account",
-                "amlaccid": "990901245",
-                "accno": "0000138113946208",
-                "accom": "BRITTANY R CREWS",
-                "accopendate": "2014-11-03",
-                "accptyrolecd": "CO-OWNER",
-                "isskewed": "N"
-            }
+            "label": "0000138113946208",
+            "nodeType": "account",
+            "amlaccid": "990901245",
+            "accno": "0000138113946208",
+            "accom": "BRITTANY R CREWS",
+            "accopendate": "2014-11-03",
+            "accptyrolecd": "CO-OWNER",
+            "isskewed": "N"
         }
     ],
-    "linkRows": [
+    "links": [
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "900126917570",
-            "targetNodeId": "13145674",
-            "linkId": "900126917570-13145674",
-            "name": "has_phone",
-            "rawlinkObject": {
-                "source": "900126917570",
-                "target": "13145674",
-                "name": "has_phone"
-            }
+            "source": "900126917570",
+            "target": "13145674",
+            "name": "has_phone"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "900126917570",
-            "targetNodeId": "2160734",
-            "linkId": "900126917570-2160734",
-            "name": "has_address",
-            "rawLinkObject": {
-                "source": "900126917578",
-                "target": "2160734",
-                "name": "has_address"
-            }
+            "source": "900126917570",
+            "target": "39749231",
+            "name": "has_phone"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "900126917578",
-            "targetNodeId": "39749231",
-            "linkId": "900126917570-39749231",
-            "name": "has_phone",
-            "rawLinkObject": {
-                "source": "900126917570",
-                "target": "39749231",
-                "name": "has_phone"
-            }
+            "source": "900126917570",
+            "target": "51485677",
+            "name": "has_acct"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "900126917570",
-            "targetNodeId": "51485677",
-            "linkId": "900126917570-51485677",
-            "name": "has_acct",
-            "rawLinkObject": {
-                "source": "900126917570",
-                "target": "51485677",
-                "name": "has_acct"
-            }
+            "source": "900126917570",
+            "target": "659222629",
+            "name": "contains"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "900126917570",
-            "targetNodeId": "659222629",
-            "linkId": "900126917570-659222629",
-            "name": "contains",
-            "rawLinkObject": {
-                "source": "900126917570",
-                "target": "659222629",
-                "name": "contains"
-            }
+            "source": "900126917570",
+            "target": "77537142",
+            "name": "has_email"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "900126917570",
-            "targetNodeId": "77537142",
-            "linkId": "900126917570-77537142",
-            "name": "has_email",
-            "rawLinkObject": {
-                "source": "900126917570",
-                "target": "77537142",
-                "name": "has_email"
-            }
+            "source": "90012877089",
+            "target": "2476025",
+            "name": "has_email"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "2476025",
-            "linkId": "90012877089-2476025",
-            "name": "has_email",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "2476025",
-                "name": "has_email"
-            }
+            "source": "90012877089",
+            "target": "35816530",
+            "name": "has_acct"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "35816530",
-            "linkId": "90012877089-35816530",
-            "name": "has_acct",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "35816530",
-                "name": "has_acct"
-            }
+            "source": "90012877089",
+            "target": "36408482",
+            "name": "has_ssn"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "36408482",
-            "linkId": "90012877089-36498482",
-            "name": "has_ssn",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "36408482",
-                "name": "has_ssn"
-            }
+            "source": "90012877089",
+            "target": "37614938",
+            "name": "has_phone"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "37614938",
-            "linkId": "90012877089-37614938",
-            "name": "has_phone",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "37614938",
-                "name": "has_phone"
-            }
+            "source": "90012877089",
+            "target": "48703815",
+            "name": "has_acct"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "48703815",
-            "linkId": "90012877089-48703815",
-            "name": "has_acct",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "48703815",
-                "name": "has_acct"
-            }
+            "source": "90012877089",
+            "target": "5020067",
+            "name": "has_acct"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "5020067",
-            "linkId": "90012877089-5020067",
-            "name": "has_acct",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "5020067",
-                "name": "has_acct"
-            }
+            "source": "90012877089",
+            "target": "530725224",
+            "name": "contains"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "530725224",
-            "linkId": "90012877089-530725224",
-            "name": "contains",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "530725224",
-                "name": "contains"
-            }
+            "source": "90012877089",
+            "target": "53901283",
+            "name": "has_acct"
         },
         {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877989",
-            "targetNodeId": "53901283",
-            "linkId": "90012877089-53901283",
-            "name": "has_acct",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "53901283",
-                "name": "has_acct"
-            }
-        },
-        {
-            "entityId": "90012877089",
-            "sourceNodeId": "90012877089",
-            "targetNodeId": "53926936",
-            "linkId": "90012877089-53926936",
-            "name": "has_acct",
-            "rawLinkObject": {
-                "source": "90012877089",
-                "target": "53926936",
-                "name": "has_acct"
-            }
+            "source": "90012877089",
+            "target": "53926936",
+            "name": "has_acct"
         }
-    ],
-    "requestedNodeIds": []
+    ]
 }

@@ -51,6 +51,7 @@ export class NwDataBuilder {
         }
       }
     }
+    this.SanitizeNwData(this.nwData);
     return this.nwData;
   }
 
@@ -96,10 +97,21 @@ export class NwDataBuilder {
     const nodeTypeConfig = this.nwConfigParser.nwNodeTypes.get(nodeType);
     // Step 3: Get NodeType attributes
     const nAttrs = nodeTypeConfig?.nodeAttributes;
+    nwNode.nodeDescAttributes = [];
+    nwNode.nodeRawObject = {};
     if (Array.isArray(nAttrs)) {
       for (const nAttr of nAttrs) {
         if (nAttr?.key && !isStringNullorEmpty(nAttr?.key) && isArrayOfNonEmptyStrings(nAttr?.rawPath)) {
           nwNode[nAttr.key] = lodashGet(rawNode, nAttr.rawPath as string[], EMPTY_STRING);
+          nwNode.nodeRawObject[nAttr.key] = typeof nwNode[nAttr.key] === 'string' 
+                                            || typeof nwNode[nAttr.key] === 'number' 
+                                            || typeof nwNode[nAttr.key] === 'boolean'? nwNode[nAttr.key]: EMPTY_STRING;
+          if(nAttr?.tooltip === true) {
+            nwNode.nodeDescAttributes.push({
+              attribute: nAttr.key,
+              title: typeof nAttr?.displayName === 'string'? nAttr.displayName : EMPTY_STRING
+            });
+          }
         }
       }
     }
@@ -113,8 +125,14 @@ export class NwDataBuilder {
     }
     // Set Node Title
     if(isArrayOfNonEmptyStrings(nodeTitleRawPath)) {
-      nwNode.title = lodashGet(rawNode, nodeTitleRawPath as string[], EMPTY_STRING);
+      nwNode.label = lodashGet(rawNode, nodeTitleRawPath as string[], EMPTY_STRING);
     }
+    // Set Node type name
+    nwNode.title = nodeType;
+    // Set color
+    nwNode.color = typeof nodeTypeConfig?.color === 'string'? nodeTypeConfig.color : EMPTY_STRING;
+    // Set ImagePath
+    nwNode.imagePath = typeof nodeTypeConfig?.imagePath === 'string'? nodeTypeConfig.imagePath : EMPTY_STRING;
   }
 
   private sanitizeNwNode(nwNode: INode) {
@@ -131,6 +149,10 @@ export class NwDataBuilder {
       nwNode.sourceIds = [];
       nwNode.targetIds = [];
       nwNode.neighbourStatus = NodeNeighbourStatus.NOT_LOADED;
+      // Hack for now
+      nwNode.nodeId = nwNode.nodeId;
+      nwNode.nodeType = nwNode.nodeType;
+      nwNode.collapsed = true;
     }
   }
 
@@ -152,6 +174,10 @@ export class NwDataBuilder {
         typeof nwEdge.id === 'string' || typeof nwEdge.id === 'number'
           ? nwEdge.id.toString()
           : uuidv4();
+      nwEdge.name = nwEdge.title;
+      nwEdge.linkId = nwEdge.id;
+      nwEdge.sourceNodeId = nwEdge.source;
+      nwEdge.targetNodeId = nwEdge.target;
     }
   }
 
@@ -195,5 +221,34 @@ export class NwDataBuilder {
     } else {
       return false;
     }
+  }
+
+  SanitizeNwData(nwData: INwData) {
+    const invalidEdgeIds: string[] = [];
+    nwData.edges.forEach(edge => {
+      if(isStringNullorEmpty(edge.source) || isStringNullorEmpty(edge.target)) {
+        invalidEdgeIds.push(edge.id);
+      } else {
+        if(nwData.nodes.has(edge.source) && nwData.nodes.has(edge.target)) {
+          const sourceNode = nwData.nodes.get(edge.source);
+          const targetNode = nwData.nodes.get(edge.target);
+          if(sourceNode && targetNode && Array.isArray(sourceNode.targetIds) && Array.isArray(targetNode.sourceIds)) {
+            sourceNode.targetIds.indexOf(edge.target) === -1? sourceNode.targetIds.push(edge.target) : null;
+            targetNode.sourceIds.indexOf(edge.source) === -1? targetNode.sourceIds.push(edge.source) : null;
+          } else {
+            invalidEdgeIds.push(edge.id);
+          }
+        } else {
+          invalidEdgeIds.push(edge.id);
+        }
+      }
+    });
+    console.log(invalidEdgeIds);
+    invalidEdgeIds.forEach(id => {
+      if(nwData.edges.has(id)) {
+        console.log(nwData.edges.get(id));
+        nwData.edges.delete(id);
+      }
+    });
   }
 }

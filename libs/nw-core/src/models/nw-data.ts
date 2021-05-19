@@ -11,15 +11,29 @@ export enum NodeNeighbourStatus {
 export interface INode extends SimulationNodeDatum {
   id?: string;
   type?: string;
-  title?: string;
+  label?: string;
   r?: number;
   neighbourStatus?: NodeNeighbourStatus;
   sourceIds?: Array<NodeId>;
   targetIds?: Array<NodeId>;
   [key: string]: any;
+
+  nodeId: string;
+  nodeType: string;
+  title: string;
+  nodeRawObject: any;
+  collapsed: boolean;
+  color: string;
+  imagePath: string;
+  nodeDescAttributes: INodeDescAttribute[];
 }
 
 export type NodeId = INode['id'];
+
+export interface INodeDescAttribute {
+  attribute: string;
+  title: string;
+}
 
 export interface INodeAttribute {
   key: string;
@@ -44,10 +58,13 @@ export interface IEdge extends SimulationLinkDatum<SimulationNodeDatum> {
   id: string;
   source: string;
   target: string;
-  // sourceNodeId: string;
-  // targetNodeId: string;
   title?: string;
   [key: string]: any;
+  // Hack
+  sourceNodeId: string;
+  targetNodeId: string;
+  linkId: string;
+  name: string;
 }
 
 export type EdgeId = IEdge['id'];

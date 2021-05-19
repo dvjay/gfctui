@@ -396,11 +396,6 @@
             "name": "has_phone"
         },
         {
-            "source": "900126917578",
-            "target": "2160734",
-            "name": "has_address"
-        },
-        {
             "source": "900126917570",
             "target": "39749231",
             "name": "has_phone"
