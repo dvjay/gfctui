@@ -400,6 +400,11 @@
       "reviewCategory": "production"
     },
     {
+      "packageName": "@gfct/nw-components-angular7",
+      "projectFolder": "libs/nw-components-angular7",
+      "reviewCategory": "production"
+    },
+    {
       "packageName": "@gfct/nw-core",
       "projectFolder": "libs/nw-core",
       "reviewCategory": "internal"
