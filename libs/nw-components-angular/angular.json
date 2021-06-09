@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "nw-components-angular7": {
+    "nw-components-angular": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "library",
@@ -30,5 +30,5 @@
       }
     }
   },
-  "defaultProject": "nw-components-angular7"
+  "defaultProject": "nw-components-angular"
 }

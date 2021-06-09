@@ -390,11 +390,6 @@
    */
   "projects": [
     {
-      "packageName": "gfctui",
-      "projectFolder": ".",
-      "reviewCategory": "internal"
-    },
-    {
       "packageName": "@gfct/demo-angular7",
       "projectFolder": "apps/demo-angular7",
       "reviewCategory": "internal"
@@ -402,11 +397,6 @@
     {
       "packageName": "@gfct/nw-components-angular",
       "projectFolder": "libs/nw-components-angular",
-      "reviewCategory": "production"
-    },
-    {
-      "packageName": "@gfct/nw-components-angular7",
-      "projectFolder": "libs/nw-components-angular7",
       "reviewCategory": "production"
     },
     {
