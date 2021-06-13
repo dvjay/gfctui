@@ -19,14 +19,17 @@
     "@angular/material": "^7.3.7",
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
+    "@ngrx/effects": "~7.4.0",
+    "@ngrx/store": "~7.4.0",
+    "@ngrx/store-devtools": "~7.4.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
-    "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
   "dependencies": {
     "d3": "^5.16.0",
     "d3-force": "^2.0.1",
+    "lodash": "^4.17.21",
     "uuid": "^8.3.2",
     "webcola": "^3.4.0"
   },
@@ -37,12 +40,14 @@
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
     "@types/d3": "^5.7.2",
+    "@types/lodash": "^4.14.144",
     "@types/node": "~8.9.4",
+    "@types/uuid": "^8.3.0",
     "codelyzer": "~4.5.0",
     "ng-packagr": "^4.2.0",
     "ts-node": "~7.0.0",
     "tsickle": ">=0.34.0",
-    "tslib": "^1.9.0",
+    "tslib": "^2.1.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
   }
