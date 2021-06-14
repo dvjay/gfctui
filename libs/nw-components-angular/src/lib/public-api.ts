@@ -1,3 +1,2 @@
-export * from './nw-graph.module';
-export * from './services/c.service';
-export * from './components/container.component';
+export * from './network-graph.module';
+export * from './components/graph/graph.component';
