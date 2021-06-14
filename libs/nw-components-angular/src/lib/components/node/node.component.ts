@@ -1,28 +1,25 @@
-import { Component, Input, EventEmitter, ElementRef, Output, AfterViewInit, OnDestroy, SimpleChanges, ViewChild } from '@angular/core'; 
+import { Component, Input, EventEmitter, ElementRef, Output, OnDestroy, SimpleChanges, ViewChild } from '@angular/core'; 
 import { INode, NeighboursStateType } from '../../models/nw-data'; 
-import { GraphEngineService } from '../../services/graph-engine. service'; 
+import { GraphEngineService } from '../../services/graph-engine.service'; 
 import { NotificationBrokerService, NotificationMessage } from '../../services/notification-broker.service'; 
 import { DispatchNodeLoadService } from '../../services/dispatch-node-load.service'; 
-import { Subscription} from 'rxjs'; 
-import { fromEvent } from 'rxjs/observable/fromEvent'; 
-import { merge } from 'rxjs/observable/merge'; 
-import { debounceTime } from 'rxjs/operators'; 
-import { NodeRelationService, CurrentMouseOverNodeOrEdge } from '../../services/node-relation service';
+import { Subscription} from 'rxjs';  
+import { CurrentMouseOverNodeOrEdge, NodeRelationService } from '../../services/node-relation.service';
 
 @Component({
         selector: '[node]', 
         templateUrl: './node.component.html', 
         styleUrls: ['./node.component.css']
 })
-export class NodeComponent implements AfterViewInit, OnDestroy {
-    @Input('node') node: INode; 
-    @Input('graph') graph: GraphEngineService; 
-    @Input('hideLabel') hideLabel: boolean; 
-    @Input('nodes') nodes: INode[]; 
-    @Input('rootNodeId') rootNodeId: string; 
-    @Input('selectedNodes') selectedNodes: INode[]; 
-    @Input('isMouseOverSidebar SelectedNodes') isMouseOverSidebarSelectedNodes: boolean; 
-    @Input('highlightNodesFromSidebar') highlightNodesFromSidebar: string[];
+export class NodeComponent implements OnDestroy {
+    @Input('node') node: INode | undefined;
+    @Input('graph') graph: GraphEngineService | undefined;
+    @Input('hideLabel') hideLabel: boolean | undefined;
+    @Input('nodes') nodes: INode[] | undefined;
+    @Input('rootNodeId') rootNodeId: string | undefined;
+    @Input('selectedNodes') selectedNodes: INode[] | undefined;
+    @Input('isMouseOverSidebar SelectedNodes') isMouseOverSidebarSelectedNodes: boolean | undefined;
+    @Input('highlightNodesFromSidebar') highlightNodesFromSidebar: string[] | undefined;
     @Output() expandNode = new EventEmitter(); 
     @Output() mouseoverNodesFromSidebar = new EventEmitter(); 
     @Output() mouseoutNodesFromSidebar = new EventEmitter(); 
@@ -36,30 +33,32 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
     nodeStyle: any = { stroke: 'gray' }; 
     isUnexpandable: boolean = false; 
     blurThisNode: boolean = false; 
-    @ViewChild('nodeRef') el: ElementRef;
+    @ViewChild('nodeRef') el: ElementRef | undefined;
+    preventSingleClick = false;
+    timer: any;
 
     constructor (private notificationBrokerService: NotificationBrokerService, 
                 private dispatchNodeLoadService: DispatchNodeLoadService, 
                 private nodeRelationService: NodeRelationService) {
         this.notificationMoveOverSub = notificationBrokerService.notificationMoveOver$.subscribe(
             (msgObj: NotificationMessage) => {
-                if(this.node.nodeType === 'entity' && typeof msgObj.entityId === 'string' && msgObj.entityId === this.node['entityId'] ) {
+                if(this.node!.nodeType === 'entity' && typeof msgObj.entityId === 'string' && msgObj.entityId === this.node!['entityId'] ) {
                         this.highlightFromSidebar();
-                    } else if(Array.isArray(msgObj.nodeIds) && msgObj.nodeIds.indexOf(this.node.nodeId) > -1) {
+                    } else if(Array.isArray(msgObj.nodeIds) && msgObj.nodeIds.indexOf(this.node!.nodeId) > -1) {
                         this.highlightFromSidebar();
                     }
                 });
         this.notificationMoveOutSub = notificationBrokerService.notificationMoveOut$.subscribe(
             (msgObj: NotificationMessage) => {
-                if(this.node.nodeType === 'entity' && typeof msgObj.entityId === 'string' && msgObj.entityId === this.node['entityId']) {
+                if(this.node!.nodeType === 'entity' && typeof msgObj.entityId === 'string' && msgObj.entityId === this.node!['entityId']) {
                     this.resetHighlightFromSidebar();
-                } else if(Array.isArray(msgObj.nodeIds) && msgObj.nodeIds.indexOf(this.node.nodeId) > -1) {
+                } else if(Array.isArray(msgObj.nodeIds) && msgObj.nodeIds.indexOf(this.node!.nodeId) > -1) {
                     this.resetHighlightFromSidebar();
                 }
         });
         this.dispatchNodeLoad = dispatchNodeLoadService.dispatchNodeLoad$.subscribe(
             (nodeIds: string[]) => {
-                if(Array.isArray(nodeIds) && nodeIds.indexOf(this.node.nodeId) > -1) {
+                if(Array.isArray(nodeIds) && nodeIds.indexOf(this.node!.nodeId) > -1) {
                     this.nodeStyle = { stroke: '#ff4d4d', strokeDasharray: 2 };
                 }
         });
@@ -69,7 +68,7 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
                     if(message.node === this.node) {
                         this.blurThisNode = false;
                     } else {
-                        if((Array.isArray(message.node.sourceIds) && message.node.sourceIds.indexOf(this.node.nodeId) > -1) || (Array.isArray(message.node.targetIds) && message.node.targetIds.indexOf(this.node.nodeId) > -1)) {
+                        if((Array.isArray(message.node.sourceIds) && message.node.sourceIds.indexOf(this.node!.nodeId) > -1) || (Array.isArray(message.node.targetIds) && message.node.targetIds.indexOf(this.node!.nodeId) > -1)) {
                             this.blurThisNode = false;
                         } else {
                             this.blurThisNode = true;
@@ -101,7 +100,7 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
 
     ngOnChanges(changes: SimpleChanges) { 
         if (typeof changes['nodes'] !== "undefined" && typeof changes['nodes'].currentValue !== "undefined") {
-            switch(this.node.neighboursStatus) {
+            switch(this.node!.neighboursStatus) {
                 case NeighboursStateType.NOT_LOADED:
                     this.nodeStyle = { stroke: 'gray' };
                     break; 
@@ -113,7 +112,7 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
                     this.nodeStyle = { stroke: '#eb0000' }; 
                     break; 
                 case NeighboursStateType.LOADED: 
-                    if(this.node.collapsed) { 
+                    if(this.node!.collapsed) { 
                         if(this.allNeighboursVisible()) {
                             this.nodeStyle = { stroke: 'black' };
                         } else {
@@ -126,14 +125,10 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
                 default:
                     this.nodeStyle = { stroke: 'gray' }; 
                     break;
-                }
             }
         }
-    
-    ngAfterViewInit() {
-        this.handleClickAndDoubleClick();
     }
-
+    
     ngOnDestroy() {
         this.notificationMoveOverSub.unsubscribe(); 
         this.notificationMoveOutSub.unsubscribe(); 
@@ -143,7 +138,7 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
 
     get nodeOpacity() {
         if(this.isMouseOverSidebarSelectedNodes) {
-            if(this.highlightNodesFromSidebar.indexOf(this.node.nodeId) > -1) {
+            if(this.highlightNodesFromSidebar!.indexOf(this.node!.nodeId) > -1) {
                 return 1;
             } else {
                 return 0.2;
@@ -159,44 +154,47 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
         return this.node && Array.isArray(this.node.src) && this.node.src.indexOf('DNDB') > -1 ? true: false;
     }
 
-    handleClickAndDoubleClick() {
-        const el = this.el.nativeElement; 
-        const clickEvent = fromEvent<MouseEvent>(el, 'click'); 
-        const dblClickEvent = fromEvent<MouseEvent>(el, 'dblclick'); 
-        const eventsMerged = merge(clickEvent, dblClickEvent).pipe(debounceTime (300)); 
-        eventsMerged.subscribe(
-            (event) => {
-                if(event.type === 'click') { 
-                    if(this.selectNode) { 
-                        if(event.ctrlkey) {
-                            this.selectNode.emit(this.node.nodeId);
-                        } else {
-                            this.selectOnlyClickedNode.emit(this.node.nodeId);
-                        }
+    handleClick(event: any) {
+        event.stopPropagation(); 
+        this.preventSingleClick = false; 
+        const delay = 250; 
+        this.timer = setTimeout(() => { 
+            if(!this.preventSingleClick) {
+                // Do Single click 
+                if(this.selectNode) { 
+                    if(event.ctrlkey) {
+                        this.selectNode.emit(this.node!.nodeId);
+                    } else {
+                        this.selectOnlyClickedNode.emit(this.node!.nodeId);
                     }
                 }
-                if(event.type === 'dblclick') {
-                    console.log("mouse double clicked"); 
-                    switch (this.node.neighboursStatus) {
-                        case NeighboursStateType.NOT_LOADED: 
-                        case NeighboursStateType.LOADING_FAILED:
-                            this.nodeStyle = { stroke: '#ff4d4d', strokeDasharray: 2 };
-                            break; 
-                        case NeighboursStateType.LOADED: 
-                            if(this.node.collapsed) {
-                                this.nodeStyle = { stroke: '#ff4d4d', strokeDasharray: 2 }; 
-                                this.expandNode.emit(this.node);
-                            }
-                                break; 
-                        default:
-                            break;
-                    }
-                }     
             }
-        );
+        }, delay);
     }
+
+    handleDoubleClick(event: any) {
+        event.stopPropagation(); 
+        this.preventSingleClick = true; 
+        clearTimeout(this.timer); 
+        // Do Double click 
+        switch (this.node!.neighboursStatus) {
+            case NeighboursStateType.NOT_LOADED: 
+            case NeighboursStateType.LOADING_FAILED:
+                this.nodeStyle = { stroke: '#ff4d4d', strokeDasharray: 2 };
+                break; 
+            case NeighboursStateType.LOADED: 
+                if(this.node!.collapsed) {
+                    this.nodeStyle = { stroke: '#ff4d4d', strokeDasharray: 2 }; 
+                    this.expandNode.emit(this.node);
+                }
+                    break; 
+            default:
+                break;
+        }
+    }
+
     handleMouseOver() {
-        this.nodeRelationService.notificationMouseover({ node: this.node });
+        this.nodeRelationService.notificationMouseOver({ node: this.node });
     }
     
     handleMouseOut() {
@@ -216,8 +214,11 @@ export class NodeComponent implements AfterViewInit, OnDestroy {
     }
 
     allNeighboursVisible(): boolean {
-        const visibleNodeIds = this.nodes.map(x => x.nodeId);
-        return [...this.node.sourceIds, ...this.node.targetIds].every(n => visibleNodeIds.includes(n))
+        const visibleNodeIds = this.nodes!.map(x => x.nodeId);
+        const sIds = Array.isArray(this.node!.sourceIds)? this.node!.sourceIds : [];
+        const tIds = Array.isArray(this.node!.targetIds)? this.node!.targetIds : [];
+
+        return [...sIds, ...tIds].every((n: any) => visibleNodeIds.includes(n))
     }
         
 }

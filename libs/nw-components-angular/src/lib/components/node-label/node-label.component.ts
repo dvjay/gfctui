@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, ElementRef, OnChanges, Output, AfterViewInit,
     OnDestroy, SimpleChanges, ViewChild } from '@angular/core'; 
 import { INode, IEdge, NeighboursStateType } from '../../models/nw-data'; 
-import {NodeRelationService, CurrentMouseOverNodeOrEdge } from '../../services/node-relation service'; 
+import {NodeRelationService, CurrentMouseOverNodeOrEdge } from '../../services/node-relation.service'; 
 import {Subscription} from 'rxjs';
 @Component({
     selector: '[node-label]', 
@@ -9,10 +9,10 @@ import {Subscription} from 'rxjs';
     styleUrls: ['./node-label.component.css']
 })
 export class NodeLabelComponent {
-    @Input('node-label') node: INode;//needed 
-    @Input('hideLabel') hideLabel: boolean;//needed 
-    @Input('isMouseOverSidebarSelectedNodes') isMouseOverSidebarSelectedNodes: boolean;//needed 
-    @Input('highlightNodesFromSidebar') highlightNodesFromSidebar: string[]; //needed 
+    @Input('node-label') node: INode | undefined;//needed 
+    @Input('hideLabel') hideLabel: boolean | undefined;//needed 
+    @Input('isMouseOverSidebarSelectedNodes') isMouseOverSidebarSelectedNodes: boolean | undefined;//needed 
+    @Input('highlightNodesFromSidebar') highlightNodesFromSidebar: string[] = []; //needed 
     nodeRelationMouseOverSub: Subscription; 
     nodeRelationMouseOutSub: Subscription; 
     blurThisNode: boolean = false;
@@ -25,7 +25,7 @@ export class NodeLabelComponent {
                         this.blurThisNode = false;
                     } else { 
                         if((Array.isArray(message.node.sourceIds) 
-                            && message.node.sourceIds.indexof(this.node.nodeId) > -1) || (Array.isArray(message.node.targetIds) && message.node.targetIds.indexOf(this.node.nodeId) > -1)) { 
+                            && message.node.sourceIds.indexOf(this.node!.nodeId) > -1) || (Array.isArray(message.node.targetIds) && message.node.targetIds.indexOf(this.node!.nodeId) > -1)) { 
                                 this.blurThisNode = false;
                             } else {
                                 this.blurThisNode = true;
@@ -54,7 +54,7 @@ export class NodeLabelComponent {
 
     get nodeOpacity() { 
         if(this.isMouseOverSidebarSelectedNodes) { 
-            if(this.highlightNodesFromSidebar.indexOf(this.node.nodeid) > -1) {
+            if(this.highlightNodesFromSidebar.indexOf(this.node!.nodeid) > -1) {
                 return 1;
             }
             return 0.2;

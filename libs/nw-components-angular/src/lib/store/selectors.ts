@@ -54,20 +54,20 @@ export const selectDirectLinked = createSelector(
                 filteredNodes.set(rootNodeId, rootNode);
             } else {
                 const queue = [rootNodeId]; 
-                let current: string | undefined; 
+                let current: string; 
                 let currentNode: INode; 
                 let neighborIds: string[];
                 
                 while (queue. length != 0) {
-                    current = queue.shift(); 
+                    current = queue.shift()!; 
                     if(current && nodes.has(current)) {
-                        currentNode = nodes.get(current); 
+                        currentNode = nodes.get(current)!; 
                         filteredNodes.set(current, currentNode); 
-                        neighborIds = [...currentNode.sourceIds, ...currentNode. targetIds];
+                        neighborIds = [...(currentNode.sourceIds as string[]), ...(currentNode. targetIds as string[])];
                         for (var j = 0; j < neighborIds.length; j++) {
                             const neighNode = nodes.get(neighborIds[j]); 
                             if (neighNode && neighNode.collapsed) {
-                                filteredNodes.set(neighborIds[j], nodes.get(neighborIds[j]));
+                                filteredNodes.set(neighborIds[j], nodes.get(neighborIds[j])!);
                             } else { 
                                 if (!filteredNodes.has(neighborIds[j])) {
                                     queue.push(neighborIds[j]);

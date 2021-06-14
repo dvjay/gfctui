@@ -1,19 +1,19 @@
 import { Component, ChangeDetectorRef, ChangeDetectionStrategy, OnInit, AfterViewInit, Input, ViewContainerRef,
-  ElementRef, ViewChildren, QueryList, SimpleChanges, HostListener, OnDestroy, Output, EventEmitter } from @angular/core'; 
+  ElementRef, ViewChildren, QueryList, SimpleChanges, HostListener, OnDestroy, Output, EventEmitter } from '@angular/core'; 
 import { debounceTime, take } from 'rxjs/operators'; 
 import { GraphEngineService } from '../../services/graph-engine.service'; 
-import { Store } from @ngrx/store'; 
+import { Store } from '@ngrx/store'; 
 import { State as GraphState, STORE_GRAPH_SLICE_NAME } from '../../store/state'; 
 import { ExpandNode, AddSkewedNotification, CollapseNode, ResetGraph, ToggleLabel, SelectNode,
   UnselectAllNodes, SelectOnlyClickedNode, ResetNodesPositions, LoadExternalData } from '../../store/actions'; 
 import * as graphSelectors from '../../store/selectors'; 
 import { Observable, Subject } from 'rxjs'; 
-import { Overlay } from '@angular/cck/overlay'; 
+import { Overlay } from '@angular/cdk/overlay'; 
 import { GraphLog} from '../../models/graph-log'; 
-import INode, IEdge } from '../../models/nw-data'; 
+import { INode, IEdge } from '../../models/nw-data'; 
 import { ConfigParserService } from '../../services/config-parser.service'; 
-import { DataBuilder Service } from '../../services/data-builder.service'; 
-import toInteger as lodashToInteger from 'lodash'; 
+import { DataBuilderService } from '../../services/data-builder.service'; 
+import { toInteger as lodashToInteger } from 'lodash'; 
 import { FadeinNotificationService } from '../../services/fadein-notification.service';
 
 @Component({
@@ -23,35 +23,35 @@ import { FadeinNotificationService } from '../../services/fadein-notification.se
   styleUrls: ['graph.component.css']
 })
 export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input('dataLoading' dataLoading?: boolean;// Independent/Optional 
-  @Input('rootNodeId') rootNodeId: string; // Mandatory 
+  @Input('dataLoading') dataLoading?: boolean;// Independent/Optional 
+  @Input('rootNodeId') rootNodeId: string | undefined; // Mandatory 
   @Input('config') config: any; // Mandatory 
   @Input('data') data?: any; //Optional 
-  numHops: number; 
-  maxNodes: number; 
+  numHops: number | undefined; 
+  maxNodes: number | undefined;
   // @Output("maxNodesChanged") maxNodesChanged; 
   @Output("numHopChanged") numHopChanged = new EventEmitter();
-  options: { width, height }; 
-  containerHeight: number; 
+  options: { width: number, height: number }; 
+  containerHeight: number | undefined;
   nodes: INode[] = []; 
   links: IEdge[] = []; 
   isMouseOverSidebarSelectedNodes: boolean = false; 
   highlightNodesFromSidebar: string[] = []; 
-  hideLabel$: Observable<boolean>; 
-  autoNetworkExplore$: Observable<boolean>; 
-  autoNetworkExpand$: Observable<boolean>;
-  rootEntityDataLoading$: Observable<boolean>;
-  rootNodeId$: Observable<string>;
-  selectedNodes$: Observable<INode[]>;
-  selectDirectLinkedFilterByNodeType$;
-  selectMaxNodesExceeded$;
+  hideLabel$: Observable<boolean> | undefined;
+  autoNetworkExplore$: Observable<boolean> | undefined;
+  autoNetworkExpand$: Observable<boolean> | undefined;
+  rootEntityDataLoading$: Observable<boolean> | undefined;
+  rootNodeId$: Observable<string | undefined> | undefined;
+  selectedNodes$: Observable<INode[]> | undefined;
+  selectDirectLinkedFilterByNodeType$: any;
+  selectMaxNodesExceeded$: any;
   
   /* context menu properties */
   isContextMenuOpen = false; 
-  latestFocusedNodeRef: ElementRef; 
-  latestFocusedNode: INode; 
-  @ViewChildren("noderef") nodeRefs: QueryList<ElementRef>; 
-  resize = new Subject<any>(); 
+  latestFocusedNodeRef: ElementRef | undefined; 
+  latestFocusedNode: INode | undefined;
+  @ViewChildren("noderef") nodeRefs: QueryList<ElementRef> | undefined; 
+  resize$ = new Subject<any>(); 
   contextMenuOptions = [
     { id: 0, label: 'Collapse'}, // {id: 1, label: 'Open in new tab'} 
   ];
@@ -67,7 +67,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     @HostListener('window:resize', ['$event']) 
-    onResize(event) {
+    onResize(event: any) {
       this.resize$.next({ width: event.target.innerWidth, height: event.target.innerHeight });
     }
     ngonChanges(changes: SimpleChanges) { 
@@ -80,9 +80,9 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
         if(this.configParserService.nwRawConfig) {
           this.dataBuilderService.getNetworkData(this.data);
           console.log("checking nwData", this.dataBuilderService.nwData);
-          this.store$.dispatch(new LoadExternalData({rootNodeId: this.rootNodeId, 
+          this.store$.dispatch(new LoadExternalData({rootNodeId: this.rootNodeId!, 
             data: this.dataBuilderService.nwData, 
-            maxNodeCount: this.maxNodes 
+            maxNodeCount: this.maxNodes!
           }));
         }
       }
@@ -90,12 +90,12 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit() {
       window.addEventListener('scroll', this.scroll, true); 
-      window.addEventListener( 'wheel', this.scroll, true;
+      window.addEventListener('wheel', this.scroll, true);
       /* Setting size of container and SVG - Begin */ 
       this.options.width = window.innerWidth; 
       // this.containerHeight = this.currentTab ? window.innerHeight - 250: window.innerHeight; 
       this.containerHeight = window.innerHeight; 
-      this.resize$.debounceTime(300).subscribe(
+      this.resize$.pipe(debounceTime(300)).subscribe(
           sizeObj => {
             this.options.width = sizeObj.width; 
             // this.containerHeight = this.currentTab ? sizeObj.height - 250 : sizeObj.height; 
@@ -111,7 +111,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
       this.selectMaxNodesExceeded$ = this.store$.select(graphSelectors.selectMaxNodesExceeded);
       this.store$.dispatch(new ResetGraph());
       
-      this.graphEngineService.ticker.subscribe((d) => {
+      this.graphEngineService.ticker.subscribe((d: any) => {
         this.nodes = d.nodes; 
         this.links = d.links; 
         this.ref.markForCheck();
@@ -121,17 +121,17 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
         this.dataBuilderService.getNetworkData(this.data);
         console.log("checking nwData", this.dataBuilderService.nwData);
         this.store$.dispatch(new LoadExternalData({
-          rootNodeId: this.rootNodeId, 
+          rootNodeId: this.rootNodeId!, 
           data: this.dataBuilderService.nwData, 
-          maxNodeCount: this.maxNodes
+          maxNodeCount: this.maxNodes!
         }));
       }
     }   
 
     ngAfterViewInit() { 
       this.selectDirectLinkedFilterByNodeType$.pipe(debounceTime(1000)).subscribe(
-        graphData => {
-          this.store$.pipe(take(1)).subscribe((val) => {
+        (graphData: any) => {
+          this.store$.pipe(take(1)).subscribe((val: any) => {
             let graphState = val[STORE_GRAPH_SLICE_NAME];
             if(graphState.rootNodeId) {
               this.graphEngineService.updateGraph(graphData);
@@ -139,7 +139,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
           });
         });
         this.selectMaxNodesExceeded$.subscribe(
-          maxNodesExceed => { 
+          (maxNodesExceed: any) => { 
             if(maxNodesExceed === true) {
               this.fadeinNotificationService.add();
             }
@@ -166,7 +166,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
           this.store$.dispatch(new CollapseNode({
             nodeId: node.nodeId, 
             currentVisibleNodes: this.nodes, 
-            currentVisibleEdges: this. links
+            currentVisibleEdges: this.links
           }));
           break; 
         case 1:
@@ -186,9 +186,9 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     notifyIsSkewed(node: INode) {
-      this.store$.pipe(take(1)).subscribe((stateVal) => {
+      this.store$.pipe(take(1)).subscribe((stateVal: any) => {
         const network = stateVal[STORE_GRAPH_SLICE_NAME];
-        if(typeof (network.skewedNodeLogs as GraphLog[]).find(x => x.nodeIds.indexOf(node.nodeId) > -1) == 'undefined') {
+        if(typeof (network.skewedNodeLogs as GraphLog[]).find((x: any) => x.nodeIds.indexOf(node.nodeId) > -1) == 'undefined') {
           this.store$.dispatch(new AddSkewedNotification(node));
         }
       })
@@ -213,7 +213,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
     onOpenContextMenu(event: MouseEvent, currentNode: INode, nodeIdx: number) {
       this.isContextMenuOpen = true; 
       this.latestFocusedNode = currentNode; 
-      this.latestFocusedNodeRef = this.nodeRefs.toArray()[nodeIdx];
+      this.latestFocusedNodeRef = this.nodeRefs!.toArray()[nodeIdx];
     }
     
     toggleLabel() {
@@ -221,7 +221,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     
     viewportClick() { 
-      this.store$.pipe(take(1)).subscribe((stateVal) => {
+      this.store$.pipe(take(1)).subscribe((stateVal: any) => {
         const nwState = stateVal[STORE_GRAPH_SLICE_NAME]; 
         if(Array.isArray(nwState.selectedNodes) && nwState.selectedNodes.length > 0) {
           this.store$.dispatch(new UnselectAllNodes());
@@ -230,8 +230,8 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     
     OnChangeNumHops() {
-      this.nodes = null; 
-      this.links = null; 
+      this.nodes = []; 
+      this.links = []; 
       this.ref.markForCheck();
       this.store$.dispatch(new ResetGraph()); 
       this.numHopChanged.emit(this.numHops);

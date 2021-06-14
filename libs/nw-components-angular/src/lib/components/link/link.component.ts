@@ -1,9 +1,8 @@
-import { Component, Input, Output, EventEmitter, SimpleChanges } from 'angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { IEdge } from '../../models/nw-data'; 
 import { Subscription} from 'rxjs'; 
 import { NotificationBrokerService } from '../../services/notification-broker.service'; 
-import { NodeRelationService, CurrentMouseOverNodeOrEdge } from '../../services/node-relation service';
-import { pipeBind1 } from 'apps/demo-angular7/node_modules/@angular/core/src/render3';
+import { NodeRelationService, CurrentMouseOverNodeOrEdge } from '../../services/node-relation.service';
 
 @Component({
     selector: '[link]', 
@@ -12,7 +11,7 @@ import { pipeBind1 } from 'apps/demo-angular7/node_modules/@angular/core/src/ren
 })
 export class LinkComponent {
     @Input('link') link: IEdge | any; 
-    @Input('hideLabel') hideLabel: boolean;
+    @Input('hideLabel') hideLabel: boolean | undefined;
     nodeRadius = 20; 
     sourceRadius: number; 
     targetRadius: number; 
@@ -43,7 +42,7 @@ export class LinkComponent {
                     this.linkOpacity = 0.2;
                 }
             } else if(message.edge) { 
-                if(message.node.nodeId === this.link.sourceNodeId || message.node.nodeId === this.link.targetNodeId) {
+                if(message.node!.nodeId === this.link.sourceNodeId || message.node!.nodeId === this.link.targetNodeId) {
                     this.linkOpacity = 1;
                 } else {
                     this.linkOpacity = 0.2;
@@ -92,7 +91,7 @@ export class LinkComponent {
     getPtBetween2PtsfromDistance(p1: {x: number, y: number}, p2: {x: number, y: number}, distance: number): {x: number, y: number} {
         const distance_ratio = distance / this.getDistanceBetwnPoints (p1, p2); 
         const x = p1.x + distance_ratio * (p2.x - p1.x); 
-        const y = p1.y + distance_ratio * p2.y - p1.y); 
+        const y = p1.y + distance_ratio * (p2.y - p1.y); 
         return {x, y};
     }
 
@@ -105,7 +104,7 @@ export class LinkComponent {
     getDistanceBetwnPoints(p1 : {x: number, y: number}, p2: {x: number, y: number}) {
         const dx = p2.x - p1.x; 
         const dy = p2.y - p1.y; 
-        const square = distance => distance * distance;
+        const square = (distance: any) => distance * distance;
         return Math.sqrt(square(dx) + square(dy));
     }
     

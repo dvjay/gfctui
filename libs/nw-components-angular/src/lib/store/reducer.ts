@@ -1,11 +1,9 @@
-import { Actions, ActionTypes } from './actions'; 
-// import GraphData from '../models/graph-data'; 
-import { INode, NeighboursStateType } from '../models/nw-data'; 
-// import { nodeFactory } from '../models/nw-data-factory'; 
+import { ActionTypes, AddDNDBNotification, AddSkewedNotification, CollapseNode, ExcludeNodeTypes, ExpandNode, LoadExternalData, SelectNode, SelectOnlyClickedNode } from './actions'; 
 import { initialState, State } from './state'; 
 import { GraphLogType, generateUniqueId, GraphLog } from '../models/graph-log';
+import { Action } from '@ngrx/store';
 
-export function graphReducer(state = initialState, action: Actions): State {
+export function graphReducer(state = initialState, action: Action): State {
     switch(action.type) { 
         case ActionTypes.TOGGLE_LABEL: { 
             return {
@@ -19,22 +17,24 @@ export function graphReducer(state = initialState, action: Actions): State {
             };
         }
         case ActionTypes.EXCLUDE_NODE_TYPES: { 
+            const payload = (action as ExcludeNodeTypes).payload;
             return {
                 ...state, 
-                excludedNodeTypes: [...action.payload]
+                excludedNodeTypes: [...payload]
             };
         }
         case ActionTypes.COLLAPSE_NODE : {
-            const colNodeId = action.payload.nodeId; 
+            const payload = (action as CollapseNode).payload;
+            const colNodeId = payload.nodeId; 
             const currStateNodes = state.data.nodes; 
             const nodeToCollapse = currStateNodes.get(colNodeId); 
-            const currentVisibleNodes = action.payload.currentVisibleNodes; 
-            const currentVisibleEdges = action.payload.currentVisibleEdges; 
+            const currentVisibleNodes = payload.currentVisibleNodes; 
+            const currentVisibleEdges = payload.currentVisibleEdges; 
             let edgeswhithColSource = currentVisibleEdges.filter((x: any) => x.sourceNodeId === colNodeId); 
             edgeswhithColSource = Array.isArray(edgeswhithColSource) ? edgeswhithColSource : []; 
             const targetNodeIds = edgeswhithColSource.map((x: any) => x.targetNodeId);
             
-            if(currStateNodes.has(colNodeId)) {
+            if(nodeToCollapse && currStateNodes.has(colNodeId)) {
                 nodeToCollapse.collapsed = true;
             } else {
                 return state;
@@ -45,16 +45,17 @@ export function graphReducer(state = initialState, action: Actions): State {
             };
         }
         case ActionTypes.EXPAND_NODE: {
-            const colNodeId = action.payload.nodeId; 
+            const payload = (action as ExpandNode).payload;
+            const colNodeId = payload.nodeId; 
             const currStateNodes = state.data.nodes; 
             const nodeToCollapse = currStateNodes.get(colNodeId); 
-            const currentVisibleNodes = action.payload.currentVisibleNodes; 
-            const currentVisibleEdges = action.payload.currentVisibleEdges; 
+            const currentVisibleNodes = payload.currentVisibleNodes; 
+            const currentVisibleEdges = payload.currentVisibleEdges; 
             let edgeswhithColSource = currentVisibleEdges.filter((x: any) => x.sourceNodeId === colNodeId); 
             edgeswhithColSource = Array.isArray(edgeswhithColSource) ? edgeswhithColSource : []; 
             const targetNodeIds = edgeswhithColSource.map((x: any) => x.targetNodeId);
             
-            if(currStateNodes.has(colNodeId)) {
+            if(nodeToCollapse && currStateNodes.has(colNodeId)) {
                 nodeToCollapse.collapsed = false;
             } else {
                 return state;
@@ -65,16 +66,15 @@ export function graphReducer(state = initialState, action: Actions): State {
             };
         }
         case ActionTypes.LOAD_EXTERNAL_DATA: {
-            const payload = action.payload; 
+            const payload = (action as LoadExternalData).payload; 
             const rootNodeId = payload.rootNodeId; 
             let nwData = payload.data; 
             const maxNodesCount = payload.maxNodeCount; 
             let isMaxNodesCountExceeded = state.maxNodesExceeded;
+            const rootNode = nwData.nodes.get(rootNodeId); 
             
-            if(nwData && nwData.nodes && nwData.nodes.has(rootNodeId)) {
-                const rootNode = nwData.nodes.get(rootNodeId); 
+            if(nwData && nwData.nodes && rootNode) {
                 rootNode.collapsed = false; 
-                
                 if(Array.isArray(rootNode.sourceIds)) { 
                     rootNode.sourceIds.forEach((nId: any) => {
                         const n = nwData.nodes.get(nId); 
@@ -83,7 +83,7 @@ export function graphReducer(state = initialState, action: Actions): State {
                         }
                     });
                 }
-                if(Array.isArray(rootNode. targetIds)) { 
+                if(Array.isArray(rootNode.targetIds)) { 
                     rootNode.targetIds.forEach((nId: any) => {
                         const n = nwData.nodes.get(nId); 
                         if(n) {
@@ -133,9 +133,9 @@ export function graphReducer(state = initialState, action: Actions): State {
                 {...state, autoNetworkExpand: !currentVal, data: { nodes: state.data.nodes, edges: state.data.edges } };
         }
         case ActionTypes.ADD_SKEWED_NOTIFICATION: {
+            const node = (action as AddSkewedNotification).payload;
             const currentSkewedNodeLogs = state.skewedNodeLogs; 
             const currentLogs = state.logs; 
-            const node = action.payload as INode;
 
             const skewedLog = { id: generateUniqueId(), nodeIds: [node.nodeId], logType: GraphLogType.Warning, 
                                 message: "Unusual Volumn!", source: "graphReducer",
@@ -148,9 +148,9 @@ export function graphReducer(state = initialState, action: Actions): State {
             };
         }
         case ActionTypes. ADD_DNDB_NOTIFICATION: {
+            const node = (action as AddDNDBNotification).payload;
             const currentSkewedNodeLogs = state.skewedNodeLogs; 
-            const currentLogs = state.logs; 
-            const node = action.payload as INode;
+            const currentLogs = state.logs;
 
             const skewedLog = { id: generateUniqueId(), nodeIds: [node.nodeId], 
                                 logType: GraphLogType.Warning, message: "Do Not Do Business (DNDB)!", 
@@ -166,7 +166,7 @@ export function graphReducer(state = initialState, action: Actions): State {
             return state;
         }
         case ActionTypes.SELECT_NODE: {
-            const nodeId = action.payload; 
+            const nodeId = (action as SelectNode).payload;
             const node = state.data.nodes.get(nodeId); 
             if (node) {
                 const nIdx = state.selectedNodes.findIndex((x: any) => x.nodeId === node.nodeId); 
@@ -186,7 +186,7 @@ export function graphReducer(state = initialState, action: Actions): State {
             }
         }
         case ActionTypes.SELECT_ONLY_CLICKED_NODE: {
-            const nodeId = action.payload; 
+            const nodeId = (action as SelectOnlyClickedNode).payload;
             const node = state.data.nodes.get(nodeId); 
             if(node) { 
                 return {
