@@ -17,8 +17,6 @@
                     <g [node]="node" style="outline: none" 
                         (isMouseOverSidebarSelectedNodes] ="isMouseOverSidebarSelectedNodes" 
                         [highlightNodesFromSidebar]="highlightNodesFromSidebar" 
-                        (mouseoverNodesFromSidebar)="mouseoverNodesFromSidebar(Sevent)" 
-                        (mouseoutNodesFromSidebar)="mouseoutNodesFromSidebar(Sevent)" 
                         [graph]="graphEngineService" 
                         *ngFor="let node of nodes; let indexOfNode=index; trackBy: trackItem" 
                         [rootNodeId]="rootNodeId$ | async" 
@@ -82,7 +80,7 @@
                 [cdkConnectedOverlayOffsetY]="0"> 
                 <ul class="menu" cdkTrapFocus cdkTrapFocusAutoCapture (focusout)="isContextMenuOpen=false" (mousewheel)="isContextMenuOpen=false"> 
                     <li *ngFor="let option of contextMenuOptions" class="menu-item"> 
-                        <button type="button" class="menu-btn" (click)="contextMenuClick(option.id, latestFocusedNode); isContextMenuOpen = false;">
+                        <button type="button" class="menu-btn" (click)="contextMenuClick(option.id, latestFocusedNode!); isContextMenuOpen = false;">
                             <span class="menu-text">{{option.label}}</span> 
                         </button> 
                     </li> 

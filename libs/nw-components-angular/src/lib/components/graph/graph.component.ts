@@ -185,11 +185,11 @@ export class GraphComponent implements OnInit, AfterViewInit, OnDestroy {
       this.store$.dispatch(new ResetNodesPositions());
     }
 
-    notifyIsSkewed(node: INode) {
+    notifyIsSkewed(node: any) {
       this.store$.pipe(take(1)).subscribe((stateVal: any) => {
         const network = stateVal[STORE_GRAPH_SLICE_NAME];
-        if(typeof (network.skewedNodeLogs as GraphLog[]).find((x: any) => x.nodeIds.indexOf(node.nodeId) > -1) == 'undefined') {
-          this.store$.dispatch(new AddSkewedNotification(node));
+        if(typeof (network.skewedNodeLogs as GraphLog[]).find((x: any) => x.nodeIds.indexOf((node as INode).nodeId) > -1) == 'undefined') {
+          this.store$.dispatch(new AddSkewedNotification(node as INode));
         }
       })
     }
