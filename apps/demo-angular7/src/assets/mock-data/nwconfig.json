@@ -66,7 +66,7 @@
           {
             "key": "flucd",
             "displayName": "FLU Code",
-            "rawPath": ["attributes", "fluca"],
+            "rawPath": ["attributes", "flucd"],
             "tooltip": true
           },
           {
@@ -122,7 +122,7 @@
           {
             "key": "accnm",
             "displayName": "Account Name",
-            "rawPath": ["attributes", "accom"],
+            "rawPath": ["attributes", "accnm"],
             "tooltip": true
           },
           {
@@ -190,7 +190,7 @@
           {
             "key": "partyfullname",
             "displayName": "Party Full Name",
-            "rawPath": ["attributes", "party fullname"],
+            "rawPath": ["attributes", "partyfullname"],
             "tooltip": true
           },
           {
@@ -212,15 +212,15 @@
             "tooltip": true
           },
           {
-            "key": "it",
+            "key": "itn",
             "displayName": "ITN",
-            "rawPath": ["attributes", "it"],
+            "rawPath": ["attributes", "itn"],
             "tooltip": true
           },
           {
             "key": "ssn",
             "displayName": "SSN",
-            "rawPath": ["attributes", "son"],
+            "rawPath": ["attributes", "ssn"],
             "tooltip": true
           },
           {
@@ -232,7 +232,7 @@
           {
             "key": "flucd",
             "displayName": "FLU Code",
-            "rawPath": ["attributes", "fluca"],
+            "rawPath": ["attributes", "flucd"],
             "tooltip": true
           },
           {
@@ -312,7 +312,7 @@
           {
             "key": "flucd",
             "displayName": "FLU Code",
-            "rawPath": ["attributes", "fluca"],
+            "rawPath": ["attributes", "flucd"],
             "tooltip": true
           },
           {
@@ -338,7 +338,7 @@
       {
         "name": "gfctAddress",
         "displayName": "Address",
-        "color": "#AF 90B3",
+        "color": "#AF90B3",
         "imagePath": "assets/images/address.png",
         "nodeAttributes": [
           {
@@ -386,7 +386,7 @@
         ]
       },
       {
-        "name": "gfcTEIN",
+        "name": "gfctEIN",
         "displayName": "EIN",
         "color": "#F8D480",
         "imagePath": "assets/images/ein.png",
@@ -412,7 +412,7 @@
           {
             "key": "flucd",
             "displayName": "FLU Code",
-            "rawPath": ["attributes", "fluca"],
+            "rawPath": ["attributes", "flucd"],
             "tooltip": true
           },
           {
@@ -454,7 +454,7 @@
             "tooltip": true
           },
           {
-            "key": "it",
+            "key": "itn",
             "displayName": "ITN",
             "rawPath": ["attributes", "itn"],
             "tooltip": true
@@ -462,7 +462,7 @@
           {
             "key": "flucd",
             "displayName": "FLU Code",
-            "rawPath": ["attributes", "fluca"],
+            "rawPath": ["attributes", "flucd"],
             "tooltip": true
           },
           {
@@ -485,7 +485,6 @@
           }
         ]
       },
-
       {
         "name": "gfctSSN",
         "displayName": "SSN",
@@ -507,13 +506,13 @@
           {
             "key": "ssn",
             "displayName": "SSN",
-            "rawPath": ["attributes", "ss"],
+            "rawPath": ["attributes", "ssn"],
             "tooltip": true
           },
           {
             "key": "flucd",
             "displayName": "FLU Code",
-            "rawPath": ["attributes", "fluca"],
+            "rawPath": ["attributes", "flucd"],
             "tooltip": true
           },
           {
@@ -563,7 +562,7 @@
           {
             "key": "flucd",
             "displayName": "FLU Code",
-            "rawPath": ["attributes", "fluca"],
+            "rawPath": ["attributes", "flucd"],
             "tooltip": true
           },
           {
