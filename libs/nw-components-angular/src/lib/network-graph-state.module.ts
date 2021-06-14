@@ -2,7 +2,7 @@ import { NetworkGraphEffects } from './store/effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
-import { NgModule } from "apps/demo-angular7/node_modules/@angular/core";
+import { NgModule } from "@angular/core";
 import { STORE_GRAPH_SLICE_NAME } from './store/state';
 import { graphReducer } from './store/reducer';
 

@@ -4,5 +4,9 @@
       "entryFile": "public-api.ts",
       "cssUrl": "inline"
     }
+  },
+  "devDependencies": {
+    "@types/d3": "^5.7.2",
+    "@types/d3-force": "^2.1.1"
   }
 }

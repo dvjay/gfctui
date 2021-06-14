@@ -10,7 +10,7 @@ export default class WebcolaAdapter implements GraphAdapter {
     private nodeRadius: number; 
     private d3cola: any;
 
-    constructor(viewportWidth, viewPortheight, nodeRadius) {
+    constructor(viewPortWidth: any, viewPortheight: any, nodeRadius: any) {
         this.width = viewPortWidth; 
         this.height = viewPortheight; 
         this.nodeRadius = nodeRadius; 
@@ -24,16 +24,16 @@ export default class WebcolaAdapter implements GraphAdapter {
     
     attachNodesPosition(data: GraphData) : Promise<void> { 
         return new Promise((resolutionFunc, rejectionFunc) => {
-            let nodekeys = []; 
-            let nodes = []; 
-            let links = []; 
+            let nodeKeys: any[] = []; 
+            let nodes: any[] = []; 
+            let links: any[] = []; 
             let linkDistance = 150; 
             let groupMap = {}; 
             let nodeIdx = 0; 
-            let groups = [];
+            // let groups = [];
             
             data.nodes.forEach((value: INode, key: string) => {
-                nodekeys.push(key);
+                nodeKeys.push(key);
                 nodes.push({name: value.nodeId, x: value.x, y: value.y}); 
                 ++nodeIdx;
             });
@@ -44,9 +44,9 @@ export default class WebcolaAdapter implements GraphAdapter {
                 links.push({source: sourceIdx, target: targetIdx});
             });
 
-            for(let g in groupMap) {
-                groups.push({ id: g, leaves: groupMap[g] });
-            }
+            // for(let g in groupMap) {
+            //     groups.push({ id: g, leaves: groupMap[g] });
+            // }
             
             if(nodes.length > 100) {
                 linkDistance = 250;
@@ -69,8 +69,8 @@ export default class WebcolaAdapter implements GraphAdapter {
             this.d3cola.stop();
             nodes.forEach((value: any) => {
                 let _oldValue = data.nodes.get(value.name); 
-                _oldValue.x = value.x;
-                _oldValue.y = value.y; 
+                _oldValue!.x = value.x;
+                _oldValue!.y = value.y; 
             }); 
             resolutionFunc();
         });

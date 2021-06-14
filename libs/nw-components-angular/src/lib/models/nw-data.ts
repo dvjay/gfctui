@@ -1,6 +1,6 @@
-// import { SimulationNodeDatum, SimulationLinkDatum } from 'd3-force'; 
+import { SimulationNodeDatum, SimulationLinkDatum } from 'd3-force'; 
 
-import { SimulationLinkDatum, SimulationNodeDatum } from "d3";
+// import { SimulationLinkDatum, SimulationNodeDatum } from "d3";
 
 export enum NeighboursStateType {
     NOT_LOADED, 

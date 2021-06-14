@@ -8,7 +8,7 @@ export default class d3ForceAdapter implements GraphAdapter {
     private height: number; 
     private nodeRadius: number;
 
-    constructor (viewPortWidth, viewPortheight, nodeRadius) {
+    constructor (viewPortWidth: any, viewPortheight: any, nodeRadius: any) {
         this.width = viewPortWidth; 
         this.height = viewPortheight; 
         this.nodeRadius = nodeRadius;
@@ -17,8 +17,8 @@ export default class d3ForceAdapter implements GraphAdapter {
     attachNodesPosition(data: GraphData) : Promise<void> { 
         return new Promise((resolutionFunc, rejectionFunc) => {
             let nodeKeys = []; 
-            let nodes = []; 
-            let links = []; 
+            let nodes: any[] = []; 
+            let links: any[] = []; 
             let linkDistance = 150; 
             
             data.nodes.forEach((value: INode, key: string) => {
@@ -40,8 +40,8 @@ export default class d3ForceAdapter implements GraphAdapter {
             
             nodes.forEach((value: any) => {
                 let _oldValue = data.nodes.get(value.name);
-                _oldValue.x = value.x;
-                _oldValue.y = value.y; 
+                _oldValue!.x = value.x;
+                _oldValue!.y = value.y; 
             }); 
             resolutionFunc();
         });

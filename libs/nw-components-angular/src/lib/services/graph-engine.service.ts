@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core'; 
-import * as d3 from 'd3'; 
+// @ts-ignore
+import * as d3 from 'd3-force'; 
 import GraphData from '../models/graph-data'; 
 import { INode, IEdge } from '../models/nw-data'; 
 import { GraphAdapter } from '../models/graph-adapter';

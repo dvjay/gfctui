@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'; 
+//@ts-ignore
 import * as d3 from 'd3'; 
 import { INode} from '../models/nw-data'; 
 import { GraphEngineService } from './graph-engine.service';
@@ -26,16 +27,16 @@ export class D3Service {
     
     graphBounds(nodes: INode[]) { 
         var x = Number.POSITIVE_INFINITY, X = Number. NEGATIVE_INFINITY, y = Number.POSITIVE_INFINITY, Y = Number.NEGATIVE_INFINITY; 
-        nodes.forEach((v) => {
+        nodes.forEach((v: any) => {
             x = Math.min(x, v.x - 50 / 2); 
             X = Math.max(X, v.x + 50 / 2); 
             y = Math.min(y, v.y - 50 / 2); 
             Y = Math.max(Y, v.y + 50 / 2);
         });
-        return { x: X, X: X, y: y, Y: Y };
+        return { x: x, X: X, y: y, Y: Y };
     }
     
-    applyDraggableBehaviour(element, node: INode, graph: GraphEngineService) {
+    applyDraggableBehaviour(element: any, node: INode, graph: GraphEngineService) {
         const d3element = d3.select(element);
 
         function started() {
@@ -43,7 +44,7 @@ export class D3Service {
             d3.event.sourceEvent.stopPropagation();
 
             if(!d3.event.active) {
-                graph.nodes.forEach(n => {
+                graph.nodes!.forEach(n => {
                     n.fx = n.x;
                     n.fy = n.y;
                 });
@@ -57,7 +58,7 @@ export class D3Service {
                 node.fy = d3.event.y;
             }
             
-            function ended (event) { 
+            function ended (event: any) { 
                 if (!d3.event.active) {
                     graph.simulation.alphaTarget(0);
                     setTimeout(() => {
@@ -71,7 +72,7 @@ export class D3Service {
             .on('start', started));
     }
     
-    createTooltip(element, node: INode) {
+    createTooltip(element: any, node: INode) {
         const d3element = d3.select(element); 
         let titleElem = d3element.select("title");
 
@@ -80,13 +81,13 @@ export class D3Service {
                 .data(node.nodeDescAttributes).enter().append("text");
             textElems.append("tspan").text((d: any) => d.title + ": ").attr("font-weight", "bold");
             textElems.append("tspan").text((d: any) => {
-                                return (typeof node[d.attribute] === 'undefined'? '.' : [d.attribute]) + "\n";
+                                return (typeof node[d.attribute] === 'undefined'? '-' : node[d.attribute]) + "\n";
             });
         } else {
             titleElem.selectAll("text") 
                 .data([node.label])
                 .enter().append("text")
-                .text(d => d);
+                .text((d: any) => d);
         }
     }
 }

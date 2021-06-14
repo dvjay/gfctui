@@ -33,7 +33,6 @@ export class NodeComponent implements OnDestroy {
     nodeStyle: any = { stroke: 'gray' }; 
     isUnexpandable: boolean = false; 
     blurThisNode: boolean = false; 
-    @ViewChild('nodeRef') el: ElementRef | undefined;
     preventSingleClick = false;
     timer: any;
 

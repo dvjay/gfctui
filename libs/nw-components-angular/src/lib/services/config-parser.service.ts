@@ -88,7 +88,7 @@ export class ConfigParserService {
     
     private setNodeTypesConfig() { 
         let nodeTypesRawConfig = (this.nwRawConfig && this.nwRawConfig.node 
-                                    && Array.isArray((this.nwRawConfig.node as NwNode).nodeTypes) ? (this.nwRawConfig.node as NwNode).nodeTypes: []) as NwNodeType[]); 
+                                    && Array.isArray((this.nwRawConfig.node as NwNode).nodeTypes) ? (this.nwRawConfig.node as NwNode).nodeTypes: []) as NwNodeType[]; 
         for (const nodeTypeFromConfig of nodeTypesRawConfig) {
             let nodeType: NwNodeType; 
             let nodeAttributes = []; 

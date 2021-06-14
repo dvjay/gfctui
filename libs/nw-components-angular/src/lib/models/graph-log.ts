@@ -22,16 +22,16 @@ export class GraphError extends Error {
 
 export function extractGraphLogFromError(err: Error | GraphError): GraphLog {
     if(err.name === nwGraphErrorName) {
-        return err as GraphError .logObj;
+        return (err as GraphError).logObj;
     } else { 
         return { id: generateUniqueId(), logType: GraphLogType.Error, 
                     message: err.message, source: "Unknown",
                     messageDesc: err.message, 
-                    timestamp: new Date()) } as GraphLog;
+                    timestamp: new Date() } as GraphLog;
     }
 }
 
-export function generateUniqueId: number {
+export function generateUniqueId(): number {
     return Date.now() + Math.random();
 }
 
