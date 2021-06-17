@@ -13,9 +13,14 @@
     "importHelpers": true,
     "target": "es5",
     "skipLibCheck": true,
-    // "typeRoots": [
-    //   "node_modules/@types"
-    // ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ]
+    },
     "lib": [
       "es2018",
       "dom"

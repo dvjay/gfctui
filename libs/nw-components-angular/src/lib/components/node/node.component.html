@@ -1,12 +1,11 @@
-<svg:g #nodeRef 
-        class="nw-node" 
+<svg:g class="nw-node" 
         [attr.transform]="'translate(' + node!.x + ',' + node!.y + ')'" 
-        [draggableNode] ="node!" 
+        [draggableNode]="node!" 
         [draggableInGraph]="graph!" 
         [tooltip]="node" 
         [ngStyle]="{'opacity': nodeOpacity}" 
         (click)="$event.stopPropagation()" 
-        (mouseover) ="handleMouseOver)"
+        (mouseover)="handleMouseOver()"
         (mouseout)="handleMouseOut()"> 
     <svg:g>
         <svg:circle *ngIf="selectedNodes.indexOf(node) !== -1" 
@@ -32,6 +31,6 @@
                     height="30" 
                     width="30" 
                     transform="translate(-15, -15)"/>
-        <svg:title></svg:title> 
+        <title></title>
     </svg:g> 
 </svg:g>

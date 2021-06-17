@@ -1,6 +1,7 @@
 /*
- * Public API Surface of some-lib
+ * Public API Surface of network-graph
  */
-export * from '@gfct/nw-components-angular/src/lib';
 
-// notice that the internal utils are NOT exported from top level public-api.ts file
+// export * from './lib/network-graph.service';
+// export * from './lib/network-graph.component';
+export * from './lib/network-graph.module';

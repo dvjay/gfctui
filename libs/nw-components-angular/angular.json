@@ -4,10 +4,10 @@
   "newProjectRoot": "projects",
   "projects": {
     "nw-components-angular": {
+      "projectType": "library",
       "root": "",
       "sourceRoot": "src",
-      "projectType": "library",
-      "prefix": "lib",
+      "prefix": "nw",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -28,7 +28,6 @@
           }
         }
       }
-    }
-  },
+    }},
   "defaultProject": "nw-components-angular"
 }

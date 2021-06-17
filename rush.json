@@ -390,24 +390,9 @@
    */
   "projects": [
     {
-      "packageName": "@gfct/demo-angular7",
-      "projectFolder": "apps/demo-angular7",
-      "reviewCategory": "internal"
-    },
-    {
       "packageName": "@gfct/nw-components-angular",
       "projectFolder": "libs/nw-components-angular",
       "reviewCategory": "production"
-    },
-    {
-      "packageName": "@gfct/nw-core",
-      "projectFolder": "libs/nw-core",
-      "reviewCategory": "internal"
-    },
-    {
-      "packageName": "@gfct/nw-toolchain",
-      "projectFolder": "tools/nw-toolchain",
-      "reviewCategory": "tools"
     }
   ]
   //"projects": [

@@ -13,11 +13,11 @@ export const reducers: ActionReducerMap<any> = {
 export function logger(reducer: ActionReducer<any>) : ActionReducer<any> { 
     const output = (state: any, action: any) => {
         const result = reducer(state, action); 
-        // console.groupCollapsed(action.type);
-        // console.log('prev state', state); 
-        // console.log('action', action); 
-        // console.log('next state', result); 
-        // console.groupEnd(); 
+        console.groupCollapsed(action.type);
+        console.log('prev state', state); 
+        console.log('action', action); 
+        console.log('next state', result); 
+        console.groupEnd(); 
         return result;
     };
     return output;
